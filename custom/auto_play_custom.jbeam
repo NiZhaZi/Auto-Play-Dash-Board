@@ -1,0 +1,104 @@
+{
+	"auto_play_dash_screen_custom": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Auto Play Dash Software custom",
+            "value":1,
+        },
+        "slotType" : "digidash_screen_logic",
+        "slots":[
+            ["type", "default", "description"],
+            ["dash_rpm_display","dash_rpm_display", "RPM display"],
+        ],
+        "controller": [
+            ["fileName"],
+            ["gauges/customModules/environmentData"],
+            ["gauges/customModules/combustionEngineData"],
+            ["gauges/customModules/electricMotorData"],
+            ["gauges/customModules/accelerationData"],
+            ["gauges/customModules/tireData"],
+
+            ["autoPlay/autoPlayGauges", {"name":"gauge", }],
+            ["autoPlay/digitalScreen", {"name":"screenInfo"}],
+            ["autoPlay/vehicleInfo", {"name":"vehicleInfo"}],
+        ],
+        "screenInfo":{
+            "maxSpeed": 350, // kph
+        }
+        "gauge": {
+            "displayData": {
+                "electrics": [
+                    "gear",
+                    "fuel",
+                    "wheelspeed",
+                    "linelock",
+                    "transbrake",
+                    "rpmTacho",
+                    "airspeed",
+                    "watertemp",
+                    "oiltemp",
+                    "maxrpm",
+                    "fuelVolume",
+                    "engineRunning",
+                    "lowfuel",
+                    "turboBoost",
+                    "hasABS",
+                    "absActive",
+                    "hasESC",
+                    "escActive",
+                    "hasTCS",
+                    "tcsActive",
+                    "throttle_input",
+                    "brake_input",
+                    "clutch_input",
+                    "checkengine",
+                    "lights",
+                    "odometer",
+                    "trip",
+
+                    "lowpressure",
+                    "autohold",
+                    "autoholdActive",
+                    "parkingbrake",
+                    "highbeam",
+                    "lowbeam",
+                    "signal_L",
+                    "signal_R",
+                    "modeName",
+                    "modeColor",
+                    "evfuel",
+                    "hybridModeTxt",
+                    "batteryVolume",
+                    "motorPower",
+                    "motorPowerRatio",
+                    "motorRegenRatio",
+                    "engineMaxRPM",
+                    "maxSpeed",
+                    "maxPower",
+                    "singleMile",
+                    "awdFL",
+                    "awdFR",
+                    "awdRL",
+                    "awdRR",
+                    "comsuFuel",
+                    "comsuBattery",
+                    "mileRange",
+                ],
+                "customModules": [
+                    ["moduleName", "property"]
+                    ["environmentData", "time"],
+                    ["environmentData", "temperature"],
+                    ["combustionEngineData", "currentPower"],
+                    ["combustionEngineData", "fuelConsumption"],
+                    ["combustionEngineData", "remainingRange"],
+                    ["electricMotorData", "currentPower"],
+                    ["electricMotorData", "remainingRange"],
+                    ["tireData", "pressures"]
+                    ["tireData", "temperatures"]
+                    ["accelerationData", "accelerationSmooth"]
+                ]
+            },
+        },
+    },
+
+}

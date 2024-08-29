@@ -1,0 +1,31 @@
+@font-face {
+    font-family: RobotoBlack;
+    src: url(/ui/common/Roboto-Black.ttf);
+}
+  
+@font-face {
+    font-family: Nasalization;
+    src: url(/ui/common/nasalization-rg.ttf), url(/ui/common/nasalization-rg.ttf);
+}
+
+body {
+    margin: 0;
+    padding-top: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: RobotoBlack;
+    font-size: 35px;
+    overflow: hidden;
+}
+
+.power_engine {
+    stroke: #ff9100;
+    stroke-dasharray: 500, 10000;
+}
+
+.power_engine > path {
+    transition: stroke-dasharray 0.4s linear, stroke .3s;
+}

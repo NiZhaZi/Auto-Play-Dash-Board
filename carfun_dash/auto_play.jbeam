@@ -1,0 +1,218 @@
+{
+	"auto_play_dash_screen": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Auto Play Dash Software",
+            "value":1,
+        },
+        "slotType" : "digidash_screen_logic",
+        "slots":[
+            ["type", "default", "description"],
+            ["dash_battery_display","dash_battery_display", "battery display"],
+            ["dash_fuel_display","dash_fuel_display", "fuel display"],
+            ["dash_awd_display","dash_awd_display", "AWD display"],
+            ["dash_rpm_display","dash_rpm_display", "RPM display"],
+            ["dash_power_display","dash_power_display", "power display"],
+        ],
+        "controller": [
+            ["fileName"],
+            ["gauges/customModules/environmentData"],
+            ["gauges/customModules/combustionEngineData"],
+            ["gauges/customModules/electricMotorData"],
+            ["gauges/customModules/accelerationData"],
+            ["gauges/customModules/tireData"],
+
+            ["autoPlay/autoPlayGauges", {"name":"gauge", }],
+            ["autoPlay/digitalScreen", {"name":"screenInfo"}],
+            ["autoPlay/vehicleInfo", {"name":"vehicleInfo"}],
+        ],
+        "screenInfo":{
+            "maxSpeed": 350, // kph
+        }
+        "gauge": {
+            "configuration": {
+                "materialName": "@auto_play"
+                "vehicleName": ""
+                "displayWidth":1024,
+                "displayHeight":512,
+                "cells":{} //incase no subparts
+            },
+            "displayData": {
+                "electrics": [
+                    "gear",
+                    "fuel",
+                    "wheelspeed",
+                    "linelock",
+                    "transbrake",
+                    "rpmTacho",
+                    "airspeed",
+                    "watertemp",
+                    "oiltemp",
+                    "maxrpm",
+                    "fuelVolume",
+                    "engineRunning",
+                    "lowfuel",
+                    "turboBoost",
+                    "hasABS",
+                    "absActive",
+                    "hasESC",
+                    "escActive",
+                    "hasTCS",
+                    "tcsActive",
+                    "throttle_input",
+                    "brake_input",
+                    "clutch_input",
+                    "checkengine",
+                    "lights",
+                    "odometer",
+                    "trip",
+
+                    "lowpressure",
+                    "autohold",
+                    "autoholdActive",
+                    "parkingbrake",
+                    "highbeam",
+                    "lowbeam",
+                    "signal_L",
+                    "signal_R",
+                    "modeName",
+                    "modeColor",
+                    "evfuel",
+                    "hybridModeTxt",
+                    "batteryVolume",
+                    "motorPower",
+                    "motorPowerRatio",
+                    "motorRegenRatio",
+                    "engineMaxRPM",
+                    "maxSpeed",
+                    "maxPower",
+                    "singleMile",
+                    "awdFL",
+                    "awdFR",
+                    "awdRL",
+                    "awdRR",
+                    "comsuFuel",
+                    "comsuBattery",
+                    "mileRange",
+                ],
+                "customModules": [
+                    ["moduleName", "property"]
+                    ["environmentData", "time"],
+                    ["environmentData", "temperature"],
+                    ["combustionEngineData", "currentPower"],
+                    ["combustionEngineData", "fuelConsumption"],
+                    ["combustionEngineData", "remainingRange"],
+                    ["electricMotorData", "currentPower"],
+                    ["electricMotorData", "remainingRange"],
+                    ["tireData", "pressures"]
+                    ["tireData", "temperatures"]
+                    ["accelerationData", "accelerationSmooth"]
+                ]
+            },
+        },
+    },
+
+    "dash_battery_display": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Battery Volume",
+            "value":0,
+        },
+        "slotType" : "dash_battery_display",
+        "gauge": {
+            "configuration_battery": {
+                "cells":{
+                    "battery": {
+                        "label": "BATTERY",
+                        "unit":"kWh",
+                        "path":"electrics.batteryVolume",
+                        "tenPrecision":0
+                    }
+                }
+            },
+        }
+    },
+
+    "dash_fuel_display": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Fuel Volume",
+            "value":0,
+        },
+        "slotType" : "dash_fuel_display",
+        "gauge": {
+            "configuration_fuel": {
+                "cells":{
+                    "fuel": {
+                        "label": "FUEL",
+                        "unit":"L",
+                        "path":"electrics.fuelVolume",
+                        "tenPrecision":0
+                    }
+                }
+            },
+        }
+    },
+
+    "dash_awd_display": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"AWD",
+            "value":0,
+        },
+        "slotType" : "dash_awd_display",
+        "gauge": {
+            "configuration_awd": {
+                "cells":{
+                    "awd": {
+                        "label": "AWD",
+                        "unit":"%",
+                        "FL":"electrics.awdFL",
+                        "FR":"electrics.awdFR",
+                        "RL":"electrics.awdRL",
+                        "RR":"electrics.awdRR",
+                    }
+                }
+            },
+        }
+    },
+
+    "dash_rpm_display": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"RPM",
+            "value":0,
+        },
+        "slotType" : "dash_rpm_display",
+        "gauge": {
+            "configuration_rpm": {
+                "cells":{
+                    "rpm": {
+                        "label": "RPM",
+                        "unit":"RPM",
+                    }
+                }
+            },
+        }
+    },
+
+    "dash_power_display": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"power",
+            "value":0,
+        },
+        "slotType" : "dash_power_display",
+        "gauge": {
+            "configuration_power": {
+                "cells":{
+                    "power": {
+                        "label": "power",
+                        "unit":"kW",
+                    }
+                }
+            },
+        }
+    },
+
+}

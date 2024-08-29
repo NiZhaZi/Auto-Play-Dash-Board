@@ -1,0 +1,23 @@
+{
+    "auto_play": {
+    "name": "auto_play",
+    "mapTo": "auto_play",
+    "class": "Material",
+    "Stages" : [
+      {
+      "colorMap" : "@auto_play",
+      "emissive" : true,
+      "specularMap" : "vehicles/common/null.dds",
+      "specularPower" : 32,
+      "useAnisotropic" : true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows" : false,
+      "materialTag0": "beamng",
+      "materialTag1": "vehicle",
+      "translucentBlendOp": "None"
+  }
+}
