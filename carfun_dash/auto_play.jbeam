@@ -8,11 +8,11 @@
         "slotType" : "digidash_screen_logic",
         "slots":[
             ["type", "default", "description"],
-            ["dash_battery_display","dash_battery_display", "battery display"],
-            ["dash_fuel_display","dash_fuel_display", "fuel display"],
-            ["dash_awd_display","dash_awd_display", "AWD display"],
-            ["dash_rpm_display","dash_rpm_display", "RPM display"],
-            ["dash_power_display","dash_power_display", "power display"],
+            ["dash_battery_display","", "battery display"],
+            ["dash_fuel_display","", "fuel display"],
+            ["dash_awd_display","", "AWD display"],
+            ["dash_rpm_display","", "RPM display"],
+            ["dash_power_display","", "power display"],
         ],
         "controller": [
             ["fileName"],
