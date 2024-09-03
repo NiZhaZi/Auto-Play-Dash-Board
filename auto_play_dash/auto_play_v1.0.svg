@@ -302,7 +302,8 @@
        class="gear_txt"
        id="gear_txt"
        style="font-weight:500;font-size:200px;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
-       x="2020"
+       text-anchor="middle"
+       x="2079"
        y="1300">P</text>
      <text
        class="hybrid_mod_txt"
