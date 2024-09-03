@@ -309,14 +309,16 @@
        id="hybrid_mod_txt"
        style="font-weight:500;font-size:72px;font-family:Kanit-SemiBold, Kanit;display:inline"
        fill="#33aaff"
-       x="2725"
+       text-anchor="middle"
+       x="2850"
        y="1060">AUTO</text>
      <text
        class="mode_txt"
        id="mode_txt"
        style="font-weight:500;font-size:72px;font-family:Kanit-SemiBold, Kanit;display:inline"
        fill="#ffffff"
-       x="1560"
+       text-anchor="middle"
+       x="1680"
        y="980">MODE</text>
      <text
        class="range_txt"
