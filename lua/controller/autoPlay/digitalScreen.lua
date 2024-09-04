@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.7 alpha
--- final edit - 2024.8.28 14:22
+-- version 0.0.8 alpha
+-- final edit - 2024.9.4 16:25
 
 local M = {}
 
@@ -64,6 +64,26 @@ local function updateGFX(dt)
         electrics.values.awdFR = centerDiff.diffTorqueSplitB * frontDiff.diffTorqueSplitB
         electrics.values.awdRL = centerDiff.diffTorqueSplitA * rearDiff.diffTorqueSplitA
         electrics.values.awdRR = centerDiff.diffTorqueSplitA * rearDiff.diffTorqueSplitB
+    elseif frontDiff and rearDiff then
+        electrics.values.awdFL = 1 * frontDiff.diffTorqueSplitA
+        electrics.values.awdFR = 1 * frontDiff.diffTorqueSplitB
+        electrics.values.awdRL = 1 * rearDiff.diffTorqueSplitA
+        electrics.values.awdRR = 1 * rearDiff.diffTorqueSplitB
+    elseif frontDiff then
+        electrics.values.awdFL = 1 * frontDiff.diffTorqueSplitA
+        electrics.values.awdFR = 1 * frontDiff.diffTorqueSplitB
+        electrics.values.awdRL = 0
+        electrics.values.awdRR = 0
+    elseif rearDiff then
+        electrics.values.awdFL = 0
+        electrics.values.awdFR = 0
+        electrics.values.awdRL = 1 * rearDiff.diffTorqueSplitA
+        electrics.values.awdRR = 1 * rearDiff.diffTorqueSplitB
+    else
+        electrics.values.awdFL = 0.25
+        electrics.values.awdFR = 0.25
+        electrics.values.awdRL = 0.25
+        electrics.values.awdRR = 0.25
     end
 
     if electrics.values.hybridMode == "hybrid" then
