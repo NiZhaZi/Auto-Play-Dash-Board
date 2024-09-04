@@ -9,7 +9,7 @@
         "gauge": {
             "configuration": {
                 "materialName": "@auto_play_screen_velocity"
-                "vehicleName": "rpm"
+                "vehicleName": ""
                 "fileName":"velocity_and_fuel/auto_play_velocity_v1.0.html",
                 "displayWidth":1024,
                 "displayHeight":1024,
