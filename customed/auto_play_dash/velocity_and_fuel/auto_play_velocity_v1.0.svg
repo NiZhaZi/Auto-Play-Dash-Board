@@ -303,10 +303,9 @@
         id="velocity"
         class="velocity"
         d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
-        stroke-dasharray="3 10.6"
+        stroke-dasharray="3 11.5"
         stroke="#00ff8c"
         stroke-width="15"
-        
         fill="transparent"/>
      <path 
         id="velocity_"
@@ -314,7 +313,7 @@
         d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
         stroke="#00ff8c"
         stroke-width="35"
-        stroke-dasharray="5 63"
+        stroke-dasharray="5 67.48"
         fill="transparent"/>
      <text
        class="cls-8"
