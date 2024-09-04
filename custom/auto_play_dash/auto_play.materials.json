@@ -1,0 +1,45 @@
+{
+    "auto_play_screen_rpm": {
+    "name": "auto_play_screen_rpm",
+    "mapTo": "auto_play_screen_rpm",
+    "class": "Material",
+    "Stages" : [
+      {
+      "colorMap" : "@auto_play_screen_rpm",
+      "emissive" : true,
+      "specularMap" : "vehicles/common/null.dds",
+      "specularPower" : 32,
+      "useAnisotropic" : true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows" : false,
+      "materialTag0": "beamng",
+      "materialTag1": "vehicle",
+      "translucentBlendOp": "None"
+  },
+
+  "auto_play_screen_velocity": {
+    "name": "auto_play_screen_velocity",
+    "mapTo": "auto_play_screen_velocity",
+    "class": "Material",
+    "Stages" : [
+      {
+      "colorMap" : "@auto_play_screen_velocity",
+      "emissive" : true,
+      "specularMap" : "vehicles/common/null.dds",
+      "specularPower" : 32,
+      "useAnisotropic" : true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows" : false,
+      "materialTag0": "beamng",
+      "materialTag1": "vehicle",
+      "translucentBlendOp": "None"
+  }
+}

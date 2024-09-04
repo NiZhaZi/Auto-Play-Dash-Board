@@ -35,7 +35,7 @@ angular.module('gaugesScreen', [])
 
     $window.updateData = (data) => {
     
-      var rpmString = (data.electrics.rpmTacho / data.electrics.engineMaxRPM * 2617).toString() + " 10000"; // full 2617
+      var rpmString = (data.electrics.rpmTacho / data.electrics.engineMaxRPM * 2093).toString() + " 10000"; // full 2617
       var redline = data.electrics.engineMaxRPM * 0.90;
       power.power_engine.n.style.setProperty("stroke-dasharray", rpmString, "important"); // engine RPM
       if(data.electrics.rpmTacho < 1){
@@ -48,6 +48,10 @@ angular.module('gaugesScreen', [])
         power.power_engine.n.style.setProperty("stroke", "#ff0000", "important");
       }
 
+      var engineRPM = (data.electrics.rpmTacho * 1.0).toFixed(0);
+      if(engineRPM == -0){
+        engineRPM = 0;
+      }
       power.power_engine_txt.text(engineRPM);
       
     }

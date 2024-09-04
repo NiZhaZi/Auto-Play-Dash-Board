@@ -1,16 +1,16 @@
 {
-    "dash_rpm_display": {
+    "dash_velocity_display": {
         "information":{
             "authors":"BeamNG",
-            "name":"RPM",
+            "name":"v & r",
             "value":0,
         },
-        "slotType" : "dash_rpm_display",
+        "slotType" : "dash_velocity_display",
         "gauge": {
             "configuration": {
-                "materialName": "@auto_play_screen_rpm"
-                "vehicleName": ""
-                "fileName":"auto_play_rpm_v1.0",
+                "materialName": "@auto_play_screen_velocity"
+                "vehicleName": "rpm"
+                "fileName":"velocity_and_fuel/auto_play_velocity_v1.0.html",
                 "displayWidth":1024,
                 "displayHeight":1024,
                 "cells":{} //incase no subparts

@@ -9,6 +9,7 @@
         "slots":[
             ["type", "default", "description"],
             ["dash_rpm_display","dash_rpm_display", "RPM display"],
+            ["dash_velocity_display","dash_velocity_display", "Velocity display"],
         ],
         "controller": [
             ["fileName"],

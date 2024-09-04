@@ -32,8 +32,8 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1387"
+     inkscape:window-width="1024"
+     inkscape:window-height="1024"
      id="namedview358"
      showgrid="false"
      inkscape:zoom="0.26763285"
@@ -278,34 +278,58 @@
      id="Info_3"
      data-name="Info 3"
      style="display:inline"
-     inkscape:label="Power">
+     inkscape:label="velocity">
+     <!-- <path 
+        id="velocity_back"
+        d="M 312 858 A 400 400 0 1 1 712 858 "
+        stroke="#ff0000"
+        stroke-width="50"
+        fill="transparent"/> -->
      <path 
-        id="power_engine_back"
-        d="M 262 945 A 500 500 0 1 1 762 945 "
-        stroke="#3c3c3c"
-        stroke-width="25"
-        stroke-linecap="round"
+        id="velocity"
+        class="velocity"
+        d="M 307 855 A 400 400 0 1 1 717 855 "
+        stroke="#494540"
+        stroke-width="75"
         fill="transparent"/>
      <path 
-        id="power_engine"
-        class="power_engine"
-        d="M 262 945 A 500 500 0 1 1 762 945 "
-        stroke="#ff9100"
-        stroke-width="25"
-        stroke-linecap="round"
+        id="fuel"
+        class="fuel"
+        d="M 317 861 A 400 400 0 0 0 707 861 "
+        stroke="#ffffff"
+        stroke-width="75"
+        fill="transparent"/>
+     <path 
+        id="velocity"
+        class="velocity"
+        d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
+        stroke-dasharray="3 10.6"
+        stroke="#00ff8c"
+        stroke-width="15"
+        
+        fill="transparent"/>
+     <path 
+        id="velocity_"
+        class="velocity_"
+        d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
+        stroke="#00ff8c"
+        stroke-width="35"
+        stroke-dasharray="5 63"
         fill="transparent"/>
      <text
        class="cls-8"
-       id="power_engine_txt"
-       style="font-weight:750;font-size:80;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
-       x="300"
+       id="velocity_txt"
+       style="font-weight:600;font-size:275;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="512"
        y="512">0</text>
      <text
        class="cls-8"
-       id="power_engine_unit_txt"
-       style="font-weight:500;font-size:75;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       id="velocity_unit_txt"
+       style="font-weight:100;font-size:80;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
        x="512"
-       y="512">RPM</text>
+       y="650">km/h</text>
   </g>
   
 </svg>
