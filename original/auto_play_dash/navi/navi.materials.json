@@ -1,0 +1,23 @@
+{
+    "navi": {
+    "name": "navi",
+    "mapTo": "navi",
+    "class": "Material",
+    "Stages" : [
+      {
+      "colorMap" : "@navi",
+      "emissive" : true,
+      "specularMap" : "vehicles/common/null.dds",
+      "specularPower" : 32,
+      "useAnisotropic" : true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows" : false,
+      "materialTag0": "beamng",
+      "materialTag1": "vehicle",
+      "translucentBlendOp": "None"
+  }
+}

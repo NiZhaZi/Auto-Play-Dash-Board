@@ -1,0 +1,17 @@
+{
+"navi_screen": {
+    "information":{
+        "authors":"BeamNG",
+        "name":"Navi screen",
+        "value":400,
+    },
+    "slotType" : "navi_screen",
+    "slots":[
+        ["type", "default", "description"],
+    ],
+    "controller": [
+        ["fileName"],
+        ["beamNavigator", {"screenMaterialName": "@navi", "name":"vivace_navi", "htmlFilePath": "local://local/vehicles//auto_play_dash/navi/navi_screen.html", "textureWidth":512, "textureHeight":256}],
+    ],
+},
+}

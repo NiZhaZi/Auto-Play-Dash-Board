@@ -8,6 +8,8 @@
         "slotType" : "digidash_screen_logic",
         "slots":[
             ["type", "default", "description"],
+            ["navi_screen", "", "navi screen"],
+
             ["dash_battery_display","", "battery display"],
             ["dash_fuel_display","", "fuel display"],
             ["dash_awd_display","", "AWD display"],
