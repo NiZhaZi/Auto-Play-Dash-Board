@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.8 alpha
--- final edit - 2024.9.4 16:25
+-- version 0.0.9 alpha
+-- final edit - 2024.9.10 16:23
 
 local M = {}
 
@@ -33,7 +33,7 @@ local function updateGFX(dt)
     local power = 0
     local regen = 0
     for _, v in ipairs(motors) do
-        power = power + v.outputTorque1 * v.outputAV1 * v.motorDirection * avToRPM * torqueToPower
+        power = power + (v.motorTorque or v.outputTorque1) * v.outputAV1 * v.motorDirection * avToRPM * (v.motorRatio or 1) / 9549
         regen = regen + v.outputTorque1
     end
     local motorPowerRatio = max(0, ceil(power / maxPower * 100))
@@ -148,6 +148,8 @@ local function init(jbeamData)
         maxPower = maxPower + v.maxPower
         maxRegen = maxRegen + v.maxRegenTorque
     end
+
+    maxPower = maxPower * 0.7355
 
     electrics.values.maxPower = maxPower
 

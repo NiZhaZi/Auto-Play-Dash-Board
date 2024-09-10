@@ -303,17 +303,17 @@
         id="velocity"
         class="velocity"
         d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
-        stroke-dasharray="3 11.5"
-        stroke="#00ff8c"
+        stroke-dasharray="3 13.1"
+        stroke="#ffffff"
         stroke-width="15"
         fill="transparent"/>
      <path 
         id="velocity_"
         class="velocity_"
         d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
-        stroke="#00ff8c"
+        stroke="#ffffff"
         stroke-width="35"
-        stroke-dasharray="5 67.48"
+        stroke-dasharray="5 75.5"
         fill="transparent"/>
      <text
        class="cls-8"
@@ -329,6 +329,20 @@
        text-anchor="middle"
        x="512"
        y="650">km/h</text>
+     <!-- <text
+       class="cls-8"
+       id="number_0"
+       style="font-weight:500;font-size:40;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="300.5"
+       y="841.5">0</text>
+     <text
+       class="cls-8"
+       id="number_60"
+       style="font-weight:500;font-size:40;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="132"
+       y="512">60</text> -->
   </g>
   
 </svg>
