@@ -52,9 +52,11 @@ body {
 }
 
 #bootscreen {
-  width: 512px;
-  height: 256px;
-  background-image: url('cherrier_bootscreen.png');
+  max-width: 512px;
+  max-height: 512px;
+  transform: scale(2, 1) translate(64px, -64px);
+  background-image: url('auto_play_screen.png');
+  /* background-image: url('cherrier_bootscreen.png'); */
 }
 
 .gpsBar {
@@ -157,7 +159,7 @@ body {
     clock: "#clockTxt",
     backgroundRgb: [85, 85, 85],
     roadColors: ["#D8D8D8FF", "#969678FF", "#967864FF"],
-    scale: 1.75,
+    scale: 0.75,
     offsetX: 256,
     offsetY: 160,
     pitch: 65,
