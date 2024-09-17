@@ -136,6 +136,9 @@ end
 
 local function init(jbeamData)
 
+    electrics.values.time = (os.date("%H") .. ":" .. os.date("%M")) or ""
+    electrics.values.tamperature = obj:getEnvTemperature() - 273.15 or 0
+
     maxPower = 0
     maxRegen = 0
 
