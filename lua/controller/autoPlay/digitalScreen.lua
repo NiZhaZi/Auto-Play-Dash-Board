@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.9 alpha
--- final edit - 2024.9.10 16:23
+-- version 0.0.10 alpha
+-- final edit - 2024.9.17 12:16
 
 local M = {}
 
@@ -49,6 +49,10 @@ local function updateGFX(dt)
 
     if battery then
         electrics.values.batteryVolume = battery.storedEnergy / 3600000
+        if not electrics.values.evfuel or electrics.values.evfuel ~= battery.remainingRatio * 100 then
+            electrics.values.evfuel = battery.remainingRatio * 100
+        end
+        electrics.values.ebrake = electrics.values.brake * max(electrics.values.ignitionLevel - 1, 0)
     else
         electrics.values.batteryVolume = 0
     end
@@ -133,7 +137,11 @@ local function init(jbeamData)
     maxRegen = 0
 
     engine = powertrain.getDevice("mainEngine")
-    electrics.values.engineMaxRPM = engine.maxRPM
+    if engine then
+        electrics.values.engineMaxRPM = engine.maxRPM
+    else
+        electrics.values.engineMaxRPM = 0
+    end
     electrics.values.maxSpeed = jbeamData.maxSpeed or 350
     electrics.values.singleMile = 0
 
