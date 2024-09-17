@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.10 alpha
--- final edit - 2024.9.17 12:16
+-- version 0.0.11 alpha
+-- final edit - 2024.9.17 14:39
 
 local M = {}
 
@@ -30,6 +30,9 @@ local battery = nil
 
 local function updateGFX(dt)
 
+    electrics.values.time = (os.date("%H") .. ":" .. os.date("%M")) or ""
+    electrics.values.tamperature = obj:getEnvTemperature() - 273.15 or 0
+
     local power = 0
     local regen = 0
     for _, v in ipairs(motors) do
@@ -44,8 +47,8 @@ local function updateGFX(dt)
     electrics.values.motorPowerRatio = motorPowerRatio
     electrics.values.motorRegenRatio = motorRegenRatio
 
-    -- log("D", "digitalScreen.lua(line43)", "motorPowerRatio" .. motorPowerRatio)
-    -- log("D", "digitalScreen.lua(line44)", "motorRegenRatio" .. motorRegenRatio)
+    -- log("D", "digitalScreen.lua(line50)", "motorPowerRatio" .. motorPowerRatio)
+    -- log("D", "digitalScreen.lua(line51)", "motorRegenRatio" .. motorRegenRatio)
 
     if battery then
         electrics.values.batteryVolume = battery.storedEnergy / 3600000
