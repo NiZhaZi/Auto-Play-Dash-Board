@@ -52,22 +52,51 @@ body {
 }
 
 #bootscreen {
-  max-width: 512px;
+  max-width: 512;
   max-height: 512px;
-  transform: scale(2, 1) translate(64px, -64px);
+  transform: scale(4, 2) translate(96px, -96px);
   background-image: url('auto_play_screen.png');
-  /* background-image: url('cherrier_bootscreen.png'); */
+}
+
+.arrow {
+  fill: green;
+  border-radius: 50%;
+  background-color: green;
+  width: 14px;
+  height: 14px;
+  position: fixed;
+  left: 50%;
+  color: white;
+  margin: 2% 2%;
+  padding: 0% 2%;
+  display:inline-block;
+  transform: scale(0.5, 1) translate(-28px, -200px);
+}
+.arrow > div{
+  display:inline-block;
+  margin: 2px 0px;
+}
+.arrow > div > div{
+  display:inline-block;
+}
+
+#_arrow {
+  bottom: 0px;
+}
+#_arrow > div{
+  margin-top: 1px;
 }
 
 .gpsBar {
   background-color: rgba(16, 16, 16, 0.9);
-  width: calc(100% - 7%);
+  width: calc(100% - 20%);
   height: 28px;
   position: fixed;
   color: white;
   margin: 2% 2%;
   padding: 0% 2%;
-  display:inline-block
+  display:inline-block;
+  transform: scale(1, 0.65) translate(70px, -200px);
 }
 .gpsBar > div{
   display:inline-block;
@@ -131,6 +160,8 @@ body {
           <span class="material-icons">zoom_out</span>
         </div>
       </div>
+      <div id="_arrow" class="arrow">
+      </div>
     </div>
     <!-- map container -->
     <div id="overflow-wrap" style=" width: 100%; height: 100%; overflow: hidden">
@@ -139,7 +170,7 @@ body {
       </div>
     </div>
   </div>
-  <div style="position: absolute; top: calc(160px - 16px ); left: 240px; transform: rotateX(50deg)">
+  <!-- <div style="position: absolute; top: calc(160px - 16px ); left: 240px; transform: rotateX(50deg)"></div>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 33.867 33.867" id="svg8">
       <g id="layer1" transform="translate(0 -263.133)">
         <g id="vehicleMarker" transform="matrix(4.53704 0 0 4.53704 -7.075 -1044.026)" stroke-width=".265">
@@ -148,7 +179,7 @@ body {
         </g>
       </g>
     </svg>
-  </div>
+  </div> -->
 </body>
 
 <script type="module">
@@ -159,9 +190,9 @@ body {
     clock: "#clockTxt",
     backgroundRgb: [85, 85, 85],
     roadColors: ["#D8D8D8FF", "#969678FF", "#967864FF"],
-    scale: 0.75,
-    offsetX: 256,
-    offsetY: 160,
+    scale: 1.75,
+    offsetX: 546, // 256
+    offsetY: 280, // 160
     pitch: 65,
     speedPitch: 3,
     hideBootscreen: true,

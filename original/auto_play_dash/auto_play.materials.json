@@ -19,5 +19,35 @@
       "materialTag0": "beamng",
       "materialTag1": "vehicle",
       "translucentBlendOp": "None"
+  },
+
+  "auto_play_gauges_screen_accessory" : {
+    "name" : "auto_play_gauges_screen_accessory",
+    "mapTo": "auto_play_gauges_screen_accessory",
+    "class" : "Material",
+    "persistentId" : "ed4c0c35-2305-4f49-9813-b2f4e088359b",
+    "Stages": [
+      {
+        "baseColorMap": "vehicles/common/screen_generic_b.color.png",
+        "metallicFactor": 1,
+       "emissiveFactor": [
+         1,
+         1,
+         1
+       ],
+       "emissiveMap": "/vehicles//auto_play_dash/navi/auto_play_screen_onlylogo.png",
+        "metallicMap": "vehicles/common/screen_generic_m.data.png",
+        "roughnessMap": "vehicles/common/screen_generic_r.data.png",
+        "useAnisotropic": true
+      },
+      {},
+      {}
+    ],
+    "alphaRef": 0,
+    "dynamicCubemap": true,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "order_simset": 0,
+    "version": 1.5
   }
 }
