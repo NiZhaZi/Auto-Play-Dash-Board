@@ -230,7 +230,7 @@ angular.module('gaugesScreen', [])
       else{
         velocity.hybrid_mod_txt.n.setAttribute("fill", "#ffffff" );
       }
-      velocity.mode_txt.text(data.electrics.modeName).css({"fill": data.electrics.modeColor});
+      velocity.mode_txt.text(data.electrics.modeName.toUpperCase()).css({"fill": data.electrics.modeColor});
       velocity.range_txt.text((data.electrics.mileRange * 1.0).toFixed(1));
 
       
