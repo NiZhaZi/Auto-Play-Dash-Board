@@ -11,7 +11,7 @@
     ],
     "controller": [
         ["fileName"],
-        ["beamNavigator", {"screenMaterialName": "@navi", "name":"vivace_navi", "htmlFilePath": "local://local/vehicles//auto_play_dash/navi/navi_screen.html", "textureWidth":512, "textureHeight":256}],
+        ["beamNavigator", {"screenMaterialName": "@navi", "name":"vivace_navi", "htmlFilePath": "local://local/vehicles//auto_play_dash/navi/navi_screen.html", "textureWidth":1024, "textureHeight":512}],
     ],
 },
 }
