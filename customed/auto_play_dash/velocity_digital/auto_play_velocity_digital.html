@@ -36,8 +36,8 @@
   <!-- Vue END -->
   <script src="/ui/lib/ext/angular/angular.js"></script>
   <script src="/ui/lib/ext/hu.js"></script>
-  <script src="auto_play_rpm_v1.0.js"></script>
-  <link type="text/css" rel="stylesheet" href="auto_play_rpm_v1.0.css">
+  <script src="auto_play_velocity_digital.js"></script>
+  <link type="text/css" rel="stylesheet" href="auto_play_velocity_digital.css">
   <style>
 @font-face {
   font-family: Kanit;
@@ -48,7 +48,7 @@
 
 <body ng-controller="GaugesScreenController as gaugeCtrl" style="background-color: rgb(0,0,0); margin: 0px;overflow:hidden">
 
-    <div style="left: 0px; top: 0px; transform-origin: center; transform: scale(1.2,1.2) translateX(-4px); position: absolute; opacity: 1" ng-include="'auto_play_rpm_v1.0.svg'" onload="onSVGLoaded()"></div>
+    <div style="left: 0px; top: 0px; transform-origin: center; transform: scale(1.0,1.0) translateX(-4px); position: absolute; opacity: 1" ng-include="'auto_play_velocity_digital.svg'" onload="onSVGLoaded()"></div>
 
     <script>
       if(typeof beamng === 'undefined' && window.location.protocol === "file:") {

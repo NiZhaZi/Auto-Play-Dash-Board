@@ -21,11 +21,20 @@ body {
     overflow: hidden;
 }
 
-.power_engine {
-    stroke: #ff9100;
+/* .velocity {
+    stroke: #494540;
     stroke-dasharray: 500, 10000;
 }
 
-.power_engine > path {
+.velocity > path {
+    transition: stroke-dasharray 0.4s linear, stroke .3s;
+} */
+
+.fuel {
+    stroke: #ffffff;
+    stroke-dasharray: 500, 10000;
+}
+
+.fuel > path {
     transition: stroke-dasharray 0.4s linear, stroke .3s;
 }

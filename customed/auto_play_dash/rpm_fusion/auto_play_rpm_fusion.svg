@@ -273,12 +273,11 @@
       </defs>
   <title
      id="title6">screen</title>
-
   <g
-     id="Info_3"
+     id="RPM"
      data-name="Info 3"
      style="display:inline"
-     inkscape:label="velocity">
+     inkscape:label="RPM">
      <!-- <path 
         id="velocity_back"
         d="M 312 858 A 400 400 0 1 1 712 858 "
@@ -286,63 +285,180 @@
         stroke-width="50"
         fill="transparent"/> -->
      <path 
-        id="velocity"
-        class="velocity"
-        d="M 307 855 A 400 400 0 1 1 717 855 "
+        id="rpm"
+        class="rpm"
+        d="M 324.5 836.7595 A 375 375 0 1 1 699.5 836.7595 "
         stroke="#494540"
-        stroke-width="75"
+        stroke-width="130"
         fill="transparent"/>
      <path 
-        id="fuel"
-        class="fuel"
-        d="M 317 861 A 400 400 0 0 0 707 861 "
-        stroke="#ffffff"
-        stroke-width="75"
+        id="redline"
+        class="redline"
+        d="M 304.5000 871.4005 A 415 415 0 1 1 719.5000 871.4005 "
+        transform="translate(0, 0)"
+        stroke-dasharray="0 1898 9999"
+        stroke="#ff0000"
+        stroke-width="50"
         fill="transparent"/>
      <path 
-        id="velocity"
-        class="velocity"
-        d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
-        stroke-dasharray="3 13.1"
+        id="waterTemp"
+        class="waterTemp"
+        d="M 309.5000 890.0608 A 475 475 0 0 0 714.5000 890.0608 "
         stroke="#ffffff"
         stroke-width="15"
         fill="transparent"/>
      <path 
-        id="velocity_"
-        class="velocity_"
-        d="M 297.5 871.5 A 418.75 418.75 0 1 1 726.5 871.5 "
+        id="rpm_1"
+        class="rpm_1"
+        d="M 299.5000 880.0608 A 425 425 0 1 1 724.5000 880.0608 "
+        stroke-dasharray="2.5901 2.9625"
+        stroke="#000000"
+        stroke-width="15"
+        
+        fill="transparent"/>
+     <path 
+        id="rpm_2"
+        class="rpm_2"
+        d="M 304.5000 871.4005 A 415 415 0 1 1 719.5000 871.4005 "
         stroke="#ffffff"
         stroke-width="35"
-        stroke-dasharray="5 75.5"
+        stroke-dasharray="3.7088 50.4559"
         fill="transparent"/>
-     <text
+     <!-- <text
        class="cls-8"
        id="velocity_txt"
        style="font-weight:600;font-size:275;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
        text-anchor="middle"
        x="512"
-       y="512">0</text>
+       y="580">0</text>
      <text
        class="cls-8"
        id="velocity_unit_txt"
-       style="font-weight:100;font-size:80;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       style="font-weight:350;font-size:80;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#999999"
        text-anchor="middle"
        x="512"
-       y="650">km/h</text>
-     <!-- <text
-       class="cls-8"
-       id="number_0"
-       style="font-weight:500;font-size:40;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       y="700">km/h</text> -->
+
+     <text
+       class="v_txt"
+       id="vt0"
+       style="font-weight:350;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
        text-anchor="middle"
-       x="300.5"
-       y="841.5">0</text>
+       x="318"
+       y="810">0</text>
+     <text
+       class="v_txt"
+       id="vt300"
+       style="font-weight:350;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ff0000"
+       text-anchor="middle"
+       x="726"
+       y="810">300</text>
+     <text
+       class="v_txt"
+       id="vt60"
+       style="font-weight:350;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="152"
+       y="525">60</text>
+     <text
+       class="v_txt"
+       id="vt240"
+       style="font-weight:350;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="865"
+       y="525">240</text>
+     <text
+       class="v_txt"
+       id="vt110"
+       style="font-weight:350;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="285"
+       y="255">110</text>
+     <text
+       class="v_txt"
+       id="vt240"
+       style="font-weight:350;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="739"
+       y="255">190</text>
+     <text
+       class="v_txt"
+       id="vt150"
+       style="font-weight:350;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="512"
+       y="170">150</text>
+     
      <text
        class="cls-8"
-       id="number_60"
-       style="font-weight:500;font-size:40;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       id="rpm_txt"
+       style="font-weight:400;font-size:100;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
        text-anchor="middle"
-       x="132"
-       y="512">60</text> -->
+       x="512"
+       y="700">0</text>
+     <text
+       class="cls-8"
+       id="rpm_time_txt"
+       style="font-weight:400;font-size:35;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="512"
+       y="745">x1000</text>
+     <text
+       class="cls-8"
+       id="rpm_unit_txt"
+       style="font-weight:400;font-size:50;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#999999"
+       text-anchor="middle"
+       x="512"
+       y="800">RPM</text>
+
+     <circle
+      cx="512" cy="512" r = "40"
+      fill="grey"
+      stroke="gold"
+      stroke-width="5"
+     />
+     <line 
+       id="pointer_0"
+       x1="512" x2="512" y1="570" y2="150"
+       stroke="white"
+       stroke-width="15"
+       stroke-linecap="round"
+       transform="rotate(-0 512 512)"
+     />
+     <line 
+       id="pointer_1"
+       x1="512" x2="512" y1="570" y2="150"
+       stroke="blue"
+       stroke-width="12"
+       stroke-linecap="round"
+       transform="rotate(-0 512 512)"
+     />
+     <path
+       style="display:inline;opacity:1;fill-opacity:1;stroke:none;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       fill="#ffffff"
+       d="m 410.46875,29.228516 -0.875,0.505859 -0.58203,1.009766 V 47.0625 h -1.83984 v 1.796875 l 14.60937,-0.0625 v -1.5625 h -1.89063 v -8.375 l 1.9375,-0.03125 c 0.20108,0.164334 0.40374,0.32625 0.42188,0.734375 l -0.0234,5.015625 c 0.0397,0.600378 0.61731,0.962965 1.11719,1.15625 0.5647,0.218343 1.28435,0.178787 1.8125,-0.117187 0.48907,-0.274092 0.96875,-1.375 0.96875,-1.375 l -0.0215,-7.66211 0.9121,-0.830078 c 0,0 -0.69885,-1.428209 -1.23437,-2 -0.45445,-0.485214 -1.625,-1.15625 -1.625,-1.15625 L 422.25,32.125 l -0.0937,0.796875 1.125,0.328125 0.14063,0.78125 c 0,0 0.76056,0.694283 1.03124,1.125 0.25777,0.410376 0.53907,1.349609 0.53907,1.349609 L 425,44.265625 c 0,0 -0.19483,0.547767 -0.42969,0.671875 -0.30198,0.159345 -0.72001,0.124882 -1.02343,-0.03125 -0.29065,-0.149783 -0.54133,-0.415747 -0.59376,-0.78125 l 0.0313,-4.453125 c 0,0 -0.16366,-0.676959 -0.36133,-0.953125 -0.20032,-0.279572 -0.79493,-0.65625 -0.79493,-0.65625 h -1.89062 v -7.734375 l -0.47656,-0.826172 -1.01953,-0.273437 z m 0.58203,1.867187 h 6.98242 v 6.939453 h -6.98242 z"
+       id="fuel_logo"
+       inkscape:connector-curvature="0"
+       inkscape:label="#path5498"
+       transform="translate(-400,780)scale(2)" />
+     <text
+       class="waterTemp_txt"
+       id="waterTemp_txt"
+       style="font-weight:350;font-size:45;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="530"
+       y="875">0</text>
+     <text
+       class="waterTemp_txt_unit"
+       id="waterTemp_txt_unit"
+       style="font-weight:350;font-size:45;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="620"
+       y="875">°C</text>
+  </g>
+
+  <g>
+      
   </g>
   
 </svg>

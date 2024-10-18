@@ -1,0 +1,30 @@
+{
+    "dash_velocity_display_digital": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Velocity (digital)",
+            "value":0,
+        },
+        "slotType" : "dash_velocity_display",
+        "controller": [
+            ["fileName"],
+            ["autoPlay/autoPlayGaugesVelocity", {"name":"gauge_velocity", }],
+        ],
+        "gauge_velocity": {
+            "displayData": {
+                "electrics": [
+                    "wheelspeed",
+                    "fuel"
+                ],
+            },
+            "configuration": {
+                "materialName": "@auto_play_screen_velocity"
+                "vehicleName": ""
+                "fileName":"velocity_digital/auto_play_velocity_digital.html",
+                "displayWidth":1024,
+                "displayHeight":1024,
+                "cells":{} //incase no subparts
+            },
+        }
+    },
+}

@@ -8,8 +8,8 @@
         "slotType" : "digidash_screen_logic",
         "slots":[
             ["type", "default", "description"],
-            ["dash_rpm_display","dash_rpm_display", "RPM display"],
-            ["dash_velocity_display","dash_velocity_display", "Velocity display"],
+            ["dash_rpm_display","dash_rpm_display_fusion", "RPM display"],
+            ["dash_velocity_display","dash_velocity_display_fusion", "Velocity display"],
         ],
         "controller": [
             ["fileName"],
@@ -19,7 +19,8 @@
             ["gauges/customModules/accelerationData"],
             ["gauges/customModules/tireData"],
 
-            ["autoPlay/autoPlayGauges", {"name":"gauge", }],
+            // ["autoPlay/autoPlayGauges", {"name":"gauge", }],
+            // ["gauges/genericGauges", {"name":"gauge", }],
             ["autoPlay/digitalScreen", {"name":"screenInfo"}],
             ["autoPlay/vehicleInfo", {"name":"vehicleInfo"}],
         ],

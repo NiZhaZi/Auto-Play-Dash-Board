@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1024 1024"
+   width="1024" height="1024"
+   version="1.1"
+   id="svg356"
+   sodipodi:docname="screen.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+    <cc:license rdf:resource="http://beamng.com/bCDDL-1.1.txt"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+  <sodipodi:namedview
+     pagecolor="#303030"
+     bordercolor="#3b3b3b"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1024"
+     inkscape:window-height="1024"
+     id="namedview358"
+     showgrid="false"
+     inkscape:zoom="0.26763285"
+     inkscape:cx="1996.5195"
+     inkscape:cy="671.20444"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg356"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs4">
+      <filter id="filterGrey" style="color-interpolation-filters:sRGB" x="-20" y="-20" height="40" width="40">
+         <feColorMatrix result="result1" values="0.111 0.111 0.111 0 0.111 0.111 0.111 0 0.111 0.111 0.111 0 0 0 0 0 0 0 1 0"/>
+      </filter>
+    <style
+       id="style2">
+       .cls-2{font-size:700px;font-family:Kanit-Bold, Kanit;fill:#ceff00;}
+       .cls-10,.cls-12,.cls-13,.cls-14,.cls-16,.cls-17,.cls-2,.cls-3,.cls-4,.cls-5,.cls-7,.cls-8{font-weight:700;}
+       .cls-3{font-size:142px;letter-spacing:0.1em;}
+       .cls-12,.cls-17,.cls-3,.cls-4{fill:#fff;}
+       .cls-10,.cls-12,.cls-13,.cls-14,.cls-16,.cls-17,.cls-3,.cls-4,.cls-5,.cls-7,.cls-8{font-family:Kanit-SemiBold, Kanit;}
+       .cls-4{font-size:459.74px;letter-spacing:0.1em;}
+       .cls-5,.cls-7{font-size:100px;fill:#4d4d4d;}
+       .cls-5{letter-spacing:0.09em;}
+       .cls-6,.cls-7{letter-spacing:0.1em;}
+       .cls-10,.cls-13,.cls-14,.cls-16,.cls-8{font-size:120px;}
+       .cls-10,.cls-8{fill:#bdccd4;}
+       .cls-9{letter-spacing:-0.02em;}
+       .cls-11{letter-spacing:0em;}
+       .cls-12{font-size:145px;text-align: end;text-anchor: end;}
+       .cls-13{fill:#3fa9f5;}.cls-14{fill:#7ac943;}.cls-15{letter-spacing:-0.045em;}
+       .cls-16{fill:#ff1d25;}.cls-17{font-size:200px;}
+       .cls-18{fill:none;stroke:#ffffff;stroke-miterlimit:10;stroke-width:20px;}
+       @keyframes blinkStopCol{
+         0%{stop-color:#f00; stop-opacity:1;}
+         100%{stop-color:#fff;stop-opacity:1;}
+      }
+      .blinkRpmBar{
+         animation: 0.4s infinite blinkStopCol steps(2);
+      }
+      @keyframes blink{
+         0%{fill:#f11}
+         100%{}
+      }
+      .blink{
+         animation: 0.25s infinite blink steps(2);
+      }
+      </style>
+      <linearGradient
+       class="blinkVelocityBar"
+       id="linearGradientVelo">
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1;"
+         offset="0.00"
+         id="velocity_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="velocity_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="velocity_stop_2" />
+      </linearGradient>
+      <linearGradient
+       class="blinkFuelBar"
+       id="linearGradientFuel">
+      <stop
+         style="stop-color:#0000ff;stop-opacity:1;"
+         offset="0.00"
+         id="fuel_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="fuel_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="fuel_stop_2" />
+      </linearGradient>
+      <linearGradient
+       class="blinkBatteryBar"
+       id="linearGradientBatt">
+      <stop
+         style="stop-color:#00ff00;stop-opacity:1;"
+         offset="0.00"
+         id="battery_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="battery_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="battery_stop_2" />
+      </linearGradient>
+      <linearGradient
+       class="blinkRPMBar"
+       id="linearGradientRPM">
+      <stop
+         style="stop-color:#0000ff;stop-opacity:1;"
+         offset="0"
+         id="rpm_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="rpm_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="rpm_stop_2" />
+      </linearGradient>
+
+      <linearGradient
+       class="blinkWaterTemp"
+       id="linearGradientWaterTemp"
+       x1="0"
+       x2="0"
+       y1="1"
+       y2="0">
+      <stop
+         style="stop-color:#0000ff;stop-opacity:1;"
+         offset="0.00"
+         id="wt_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="wt_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="wt_stop_2" />
+      </linearGradient>
+      <linearGradient
+       class="blinkOilTemp"
+       id="linearGradientOilTemp"
+       x1="0"
+       x2="0"
+       y1="1"
+       y2="0">
+      <stop
+         style="stop-color:#ffff00;stop-opacity:1;"
+         offset="0.00"
+         id="ot_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="ot_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="ot_stop_2" />
+      </linearGradient>
+
+      <linearGradient
+       class="blinkAWDFL"
+       id="linearGradientAWDFL"
+       x1="0"
+       x2="0"
+       y1="1"
+       y2="0">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0.00"
+         id="fl_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="fl_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="fl_stop_2" />
+      </linearGradient>
+      <linearGradient
+       class="blinkAWDFR"
+       id="linearGradientAWDFR"
+       x1="0"
+       x2="0"
+       y1="1"
+       y2="0">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0.00"
+         id="fr_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="fr_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="fr_stop_2" />
+      </linearGradient>
+      <linearGradient
+       class="blinkAWDRL"
+       id="linearGradientAWDRL"
+       x1="0"
+       x2="0"
+       y1="1"
+       y2="0">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0.00"
+         id="rl_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="rl_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="rl_stop_2" />
+      </linearGradient>
+      <linearGradient
+       class="blinkAWDRR"
+       id="linearGradientAWDRR"
+       x1="0"
+       x2="0"
+       y1="1"
+       y2="0">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0.00"
+         id="rr_stop_0" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1"
+         offset="1.00"
+         id="rr_stop_1" />
+      <stop
+         style="stop-color:#3c3c3c;stop-opacity:1;"
+         offset="1.00"
+         id="rr_stop_2" />
+      </linearGradient>
+      
+      </defs>
+  <title
+     id="title6">screen</title>
+
+  <g
+     id="RPM"
+     data-name="Velocity"
+     style="display:inline"
+     inkscape:label="RPM">
+     <!-- <path 
+        id="velocity_back"
+        d="M 312 858 A 400 400 0 1 1 712 858 "
+        stroke="#ff0000"
+        stroke-width="50"
+        fill="transparent"/> -->
+     <path 
+        id="rpm"
+        class="rpm"
+        d="M 324.5 836.7595 A 375 375 0 1 1 699.5 836.7595 "
+        stroke="#494540"
+        stroke-width="130"
+        fill="transparent"/>
+     <path 
+        id="redline"
+        class="redline"
+        d="M 304.5000 871.4005 A 415 415 0 1 1 719.5000 871.4005 "
+        transform="translate(0, 0)"
+        stroke-dasharray="0 1898 9999"
+        stroke="#ff0000"
+        stroke-width="50"
+        fill="transparent"/>
+     <path 
+        id="velocity_1"
+        class="velocity_1"
+        d="M 299.5000 880.0608 A 425 425 0 1 1 724.5000 880.0608 "
+        stroke-dasharray="3.4535 3.9500"
+        stroke="#000000"
+        stroke-width="15"
+        
+        fill="transparent"/>
+     <path 
+        id="velocity_2"
+        class="velocity_2"
+        d="M 304.5000 871.4005 A 415 415 0 1 1 719.5000 871.4005 "
+        stroke="#ffffff"
+        stroke-width="35"
+        stroke-dasharray="3.7088 68.5555"
+        fill="transparent"/>
+     <text
+       class="cls-8"
+       id="rpm_txt"
+       style="font-weight:600;font-size:275;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="512"
+       y="580">0</text>
+     <text
+       class="cls-8"
+       id="rpm_time_txt"
+       style="font-weight:350;font-size:50;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="512"
+       y="650">x1000</text>
+     <text
+       class="cls-8"
+       id="rpm_unit_txt"
+       style="font-weight:350;font-size:80;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#999999"
+       text-anchor="middle"
+       x="512"
+       y="740">RPM</text>
+     <path 
+        id="waterTemp"
+        class="waterTemp"
+        d="M 309.5000 890.0608 A 475 475 0 0 0 714.5000 890.0608 "
+        stroke="#ffffff"
+        stroke-width="15"
+        fill="transparent"/>
+     <text
+       class="waterTemp_txt"
+       id="waterTemp_txt"
+       style="font-weight:350;font-size:45;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="530"
+       y="875">0</text>
+  </g>
+  <g
+     id="Fuel1"
+     data-name="Fuel"
+     style="display:inline"
+     inkscape:label="fuel">
+     <path
+       style="display:inline;opacity:1;fill-opacity:1;stroke:none;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       fill="#ffffff"
+       d="m 410.46875,29.228516 -0.875,0.505859 -0.58203,1.009766 V 47.0625 h -1.83984 v 1.796875 l 14.60937,-0.0625 v -1.5625 h -1.89063 v -8.375 l 1.9375,-0.03125 c 0.20108,0.164334 0.40374,0.32625 0.42188,0.734375 l -0.0234,5.015625 c 0.0397,0.600378 0.61731,0.962965 1.11719,1.15625 0.5647,0.218343 1.28435,0.178787 1.8125,-0.117187 0.48907,-0.274092 0.96875,-1.375 0.96875,-1.375 l -0.0215,-7.66211 0.9121,-0.830078 c 0,0 -0.69885,-1.428209 -1.23437,-2 -0.45445,-0.485214 -1.625,-1.15625 -1.625,-1.15625 L 422.25,32.125 l -0.0937,0.796875 1.125,0.328125 0.14063,0.78125 c 0,0 0.76056,0.694283 1.03124,1.125 0.25777,0.410376 0.53907,1.349609 0.53907,1.349609 L 425,44.265625 c 0,0 -0.19483,0.547767 -0.42969,0.671875 -0.30198,0.159345 -0.72001,0.124882 -1.02343,-0.03125 -0.29065,-0.149783 -0.54133,-0.415747 -0.59376,-0.78125 l 0.0313,-4.453125 c 0,0 -0.16366,-0.676959 -0.36133,-0.953125 -0.20032,-0.279572 -0.79493,-0.65625 -0.79493,-0.65625 h -1.89062 v -7.734375 l -0.47656,-0.826172 -1.01953,-0.273437 z m 0.58203,1.867187 h 6.98242 v 6.939453 h -6.98242 z"
+       id="fuel_logo"
+       inkscape:connector-curvature="0"
+       inkscape:label="#path5498"
+       transform="translate(-400,780)scale(2)" />
+     <text
+       class="waterTemp_txt_unit"
+       id="waterTemp_txt_unit"
+       style="font-weight:350;font-size:45;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       text-anchor="middle"
+       x="620"
+       y="875">°C</text>
+     <path 
+        id="fuel_1"
+        class="fuel_1"
+        d="M 309.5000 890.0608 A 475 475 0 0 0 714.5000 890.0608 "
+        stroke="red"
+        stroke-width="15"
+        stroke-dasharray="5 1000000"
+        fill="transparent"/>
+     <path 
+        id="fuel_2"
+        class="fuel_2"
+        d="M 714.5000 890.0608 A 475 475 0 1 0 309.5000 890.0608 "
+        stroke="blue"
+        stroke-width="15"
+        stroke-dasharray="5 1000000"
+        fill="transparent"/>
+     <line 
+        x1="512" x2="512" y1="945" y2="928"
+        stroke="blue"
+        stroke-width="7"/>
+  </g>
+  
+</svg>
