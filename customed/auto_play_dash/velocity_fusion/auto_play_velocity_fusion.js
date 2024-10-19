@@ -23,6 +23,8 @@ angular.module('gaugesScreen', [])
       power.pointer_0 = hu("#pointer_0", power.root);
       power.pointer_1 = hu("#pointer_1", power.root);
 
+      power.reColor = hu("#reColor", power.root);
+
       ready = true;
     }
 
@@ -64,6 +66,19 @@ angular.module('gaugesScreen', [])
         velocity_txt = 0;
       }
       power.velocity_txt.text(velocity_txt);
+
+
+      // reColor part
+      // console.log(velocityAngle / (Math.PI / 180));
+      var CorrectionValue = 0;
+      if(velocityAngle <= -210 * (Math.PI / 180)){
+        CorrectionValue = 1;
+      }
+      var endPosX = (1024 - 512 + Math.cos(90 * (Math.PI / 180) - velocityAngle) * 415).toFixed(4);
+      var endPosY = (512 + Math.sin(90 * (Math.PI / 180) - velocityAngle) * 415).toFixed(4);
+      var reColorM = "M 304.5000 871.4005 A 415 415 0 " + CorrectionValue.toString() + " 1 " + endPosX.toString() + " " + endPosY.toString();
+      power.reColor.attr({ d: reColorM });
+
 
       // fuel part
       var fuel = data.electrics.fuel;

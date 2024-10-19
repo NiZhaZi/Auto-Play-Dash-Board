@@ -21,9 +21,7 @@ angular.module('gaugesScreen', [])
       power.fuel = hu("#fuel", power.root);
       power.fuel_txt = hu("#fuel_txt", power.root);
 
-      // fuel.root = hu("#Fuel1", svg);
-      // fuel.fuel = hu("#fuel", fuel.root);
-      // fuel.fuel_txt = hu("#fuel_txt", fuel.root);
+      power.reColor = hu("#reColor", power.root);
 
       ready = true;
     }
@@ -53,6 +51,20 @@ angular.module('gaugesScreen', [])
         velocity_txt = 0;
       }
       power.velocity_txt.text(velocity_txt);
+
+
+      // reColor part
+      var velocityAngle = -1 * (wheelspeed + 30) * (Math.PI / 180);
+      // console.log(velocityAngle / (Math.PI / 180));
+      var CorrectionValue = 0;
+      if(velocityAngle <= -210 * (Math.PI / 180)){
+        CorrectionValue = 1;
+      }
+      var endPosX = (1024 - 512 + Math.cos(90 * (Math.PI / 180) - velocityAngle) * 415).toFixed(4);
+      var endPosY = (512 + Math.sin(90 * (Math.PI / 180) - velocityAngle) * 415).toFixed(4);
+      var reColorM = "M 304.5000 871.4005 A 415 415 0 " + CorrectionValue.toString() + " 1 " + endPosX.toString() + " " + endPosY.toString();
+      power.reColor.attr({ d: reColorM });
+
 
       // fuel part
       var fuel = data.electrics.fuel;

@@ -315,6 +315,14 @@
         stroke-width="35"
         stroke-dasharray="3.7088 68.5555"
         fill="transparent"/>
+     <path 
+        id="reColor"
+        class="reColor"
+        d="M 304.5000 871.4005 A 415 415 0 1 1 719.5000 871.4005 "
+        stroke="#000000"
+        stroke-width="35"
+        stroke-dasharray="3.7088 68.5555"
+        fill="transparent"/>
      <!-- <text
        class="cls-8"
        id="velocity_txt"

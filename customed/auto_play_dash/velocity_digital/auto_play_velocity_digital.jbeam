@@ -14,7 +14,8 @@
             "displayData": {
                 "electrics": [
                     "wheelspeed",
-                    "fuel"
+                    "fuel",
+                    "mileRange",
                 ],
             },
             "configuration": {

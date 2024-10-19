@@ -26,6 +26,8 @@ angular.module('gaugesScreen', [])
       power.waterTemp = hu("#waterTemp", power.root);
       power.waterTemp_txt = hu("#waterTemp_txt", power.root);
 
+      power.reColor = hu("#reColor", power.root);
+
       ready = true;
     }
 
@@ -61,6 +63,19 @@ angular.module('gaugesScreen', [])
         rpm_txt = 0;
       }
       power.rpm_txt.text(rpm_txt);
+
+
+      // reColor part
+      var rpmAngle = -1 * (rpm * (300 / maxRPM) + 30) * (Math.PI / 180);
+      // console.log(rpmAngle / (Math.PI / 180));
+      var CorrectionValue = 0;
+      if(rpmAngle <= -210 * (Math.PI / 180)){
+        CorrectionValue = 1;
+      }
+      var endPosX = (1024 - 512 + Math.cos(90 * (Math.PI / 180) - rpmAngle) * 415).toFixed(4);
+      var endPosY = (512 + Math.sin(90 * (Math.PI / 180) - rpmAngle) * 415).toFixed(4);
+      var reColorM = "M 304.5000 871.4005 A 415 415 0 " + CorrectionValue.toString() + " 1 " + endPosX.toString() + " " + endPosY.toString();
+      power.reColor.attr({ d: reColorM });
 
 
       // waterTemp part

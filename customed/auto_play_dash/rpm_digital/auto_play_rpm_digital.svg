@@ -302,21 +302,29 @@
         stroke-width="50"
         fill="transparent"/>
      <path 
-        id="velocity_1"
-        class="velocity_1"
+        id="rpm_1"
+        class="rpm_1"
         d="M 299.5000 880.0608 A 425 425 0 1 1 724.5000 880.0608 "
-        stroke-dasharray="3.4535 3.9500"
+        stroke-dasharray="2.5901 2.9625"
         stroke="#000000"
         stroke-width="15"
         
         fill="transparent"/>
      <path 
-        id="velocity_2"
-        class="velocity_2"
+        id="rpm_2"
+        class="rpm_2"
         d="M 304.5000 871.4005 A 415 415 0 1 1 719.5000 871.4005 "
         stroke="#ffffff"
         stroke-width="35"
-        stroke-dasharray="3.7088 68.5555"
+        stroke-dasharray="3.7088 50.4990"
+        fill="transparent"/>
+     <path 
+        id="reColor"
+        class="reColor"
+        d="M 304.5000 871.4005 A 415 415 0 1 1 719.5000 871.4005 "
+        stroke="#000000"
+        stroke-width="35"
+        stroke-dasharray="3.7088 50.4990"
         fill="transparent"/>
      <text
        class="cls-8"
