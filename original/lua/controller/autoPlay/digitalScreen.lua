@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.11 alpha
--- final edit - 2024.9.17 14:39
+-- version 0.0.12 alpha
+-- final edit - 2024.10.29 20:14
 
 local M = {}
 
@@ -67,10 +67,10 @@ local function updateGFX(dt)
     end
 
     if centerDiff and frontDiff and rearDiff then
-        electrics.values.awdFL = centerDiff.diffTorqueSplitB * frontDiff.diffTorqueSplitA
-        electrics.values.awdFR = centerDiff.diffTorqueSplitB * frontDiff.diffTorqueSplitB
-        electrics.values.awdRL = centerDiff.diffTorqueSplitA * rearDiff.diffTorqueSplitA
-        electrics.values.awdRR = centerDiff.diffTorqueSplitA * rearDiff.diffTorqueSplitB
+        electrics.values.awdFL = (centerDiff.diffTorqueSplitB or centerDiff.outputTorque2) * frontDiff.diffTorqueSplitA
+        electrics.values.awdFR = (centerDiff.diffTorqueSplitB or centerDiff.outputTorque2) * frontDiff.diffTorqueSplitB
+        electrics.values.awdRL = (centerDiff.diffTorqueSplitA or centerDiff.outputTorque1) * rearDiff.diffTorqueSplitA
+        electrics.values.awdRR = (centerDiff.diffTorqueSplitA or centerDiff.outputTorque1) * rearDiff.diffTorqueSplitB
     elseif frontDiff and rearDiff then
         electrics.values.awdFL = 1 * frontDiff.diffTorqueSplitA
         electrics.values.awdFR = 1 * frontDiff.diffTorqueSplitB
