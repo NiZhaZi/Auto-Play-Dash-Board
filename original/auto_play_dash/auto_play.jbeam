@@ -96,6 +96,8 @@
                     "comsuFuel",
                     "comsuBattery",
                     "mileRange",
+                    "time",
+                    "temperature"
                 ],
                 "customModules": [
                     ["moduleName", "property"]

@@ -16,6 +16,7 @@ angular.module('gaugesScreen', [])
     var power = { };
     var signal = {};
     var awd = {};
+    var environment = {};
 
     var ready = false;
     // var customUnits= ["",undefined,"bool","gear","pressureFromPsi","light"]
@@ -93,7 +94,7 @@ angular.module('gaugesScreen', [])
       power.power_engine_unit_txt = hu("#power_engine_unit_txt", power.root);
       power.mile_txt = hu("#mile_txt", power.root);
 
-      signal.root = hu('Info_4', svg);
+      signal.root = hu('#Info_4', svg);
       signal.light_lowbeam = hu("#light_lowbeam", signal.root);
       signal.light_highbeam = hu("#light_highbeam", signal.root);
       signal.fuel_logo = hu("#fuel_logo", signal.root);
@@ -108,6 +109,10 @@ angular.module('gaugesScreen', [])
       signal.abs_txt = hu("#abs_txt", signal.root);
       signal.tcs_txt = hu("#tcs_txt", signal.root);
       signal.esc_txt = hu("#esc_txt", signal.root);
+
+      environment.root = hu('#Info_6', svg);
+      environment.time = hu("#time", environment.root);
+      environment.temperature = hu("#temperature", environment.root);
       
       ready = true;
     }
@@ -355,6 +360,9 @@ angular.module('gaugesScreen', [])
 
       electrics.ot_stop_0.n.setAttribute("offset", data.electrics.oiltemp / 200 + 0.001 );
       electrics.ot_stop_1.n.setAttribute("offset", data.electrics.oiltemp / 200 - 0.001 );
+
+      environment.time.text(data.electrics.time);
+      environment.temperature.text(data.electrics.temperature);
       
     }
   })

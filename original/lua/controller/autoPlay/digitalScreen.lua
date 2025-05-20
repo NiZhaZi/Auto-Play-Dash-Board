@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.12 alpha
--- final edit - 2024.10.29 20:14
+-- version 0.0.13 alpha
+-- final edit - 2025.5.20 20:02
 
 local M = {}
 
@@ -28,10 +28,34 @@ local rearDiff = nil
 
 local battery = nil
 
+local function timeStr(time)
+    if time < 10 then
+        return "0" .. tostring(time)
+    else
+        return tostring(time)
+    end
+end
+
 local function updateGFX(dt)
 
-    electrics.values.time = (os.date("%H") .. ":" .. os.date("%M")) or ""
-    electrics.values.tamperature = obj:getEnvTemperature() - 273.15 or 0
+    -- electrics.values.time = (os.date("%H") .. ":" .. os.date("%M")) or ""
+    local time = tonumber(obj:getLastMailbox("timeService"))
+    local tempTime
+    local timeH
+    local timeM
+    if time then
+        if time < 0.5 then
+            tempTime = 24 * time + 12
+        else
+            tempTime = 24 * time - 12
+        end
+        timeH = floor(tempTime)
+        timeM = floor((tempTime - timeH) * 60)
+    end
+
+    electrics.values.time = (timeStr(timeH) .. ":" .. timeStr(timeM)) or ":"
+
+    electrics.values.temperature = tostring(floor(obj:getEnvTemperature() - 273.15 + 0.5) or 0) .. "℃"
 
     local power = 0
     local regen = 0
@@ -136,7 +160,8 @@ end
 
 local function init(jbeamData)
 
-    electrics.values.time = (os.date("%H") .. ":" .. os.date("%M")) or ""
+    -- electrics.values.time = (os.date("%H") .. ":" .. os.date("%M")) or ""
+    obj:queueGameEngineLua('extensions.load("timeService_timeService")')
     electrics.values.tamperature = obj:getEnvTemperature() - 273.15 or 0
 
     maxPower = 0

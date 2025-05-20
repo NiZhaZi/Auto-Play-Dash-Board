@@ -649,6 +649,25 @@
   </g>
 
   <g
+     id="Info_6"
+     data-name="Info 6"
+     style="display:inline"
+     inkscape:label="environment">
+     <text
+       class="time"
+       id="time"
+       style="font-weight:500;font-size:60;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       x="3200"
+       y="750">00:00</text>
+     <text
+       class="temperature"
+       id="temperature"
+       style="font-weight:500;font-size:60;font-family:Kanit-SemiBold, Kanit;display:inline;fill:#ffffff"
+       x="3215"
+       y="850">20℃</text>
+  </g>
+
+  <g
        id="temp_logo"
        inkscape:label="#g984"
        style="display:inline;fill:#ffffff;stroke:#ffffff"
