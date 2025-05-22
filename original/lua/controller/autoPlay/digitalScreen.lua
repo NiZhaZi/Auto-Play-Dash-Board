@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.13 alpha
--- final edit - 2025.5.20 20:02
+-- version 0.0.14 alpha
+-- final edit - 2025.5.22 12:57
 
 local M = {}
 
@@ -135,8 +135,12 @@ local function updateGFX(dt)
     electrics.values.modeName = driveMode
     if driveMode == "comfort" then
         electrics.values.modeColor = "#238be6"
+    elseif driveMode == "eco" then
+        electrics.values.modeColor = "#00ff00"
     elseif driveMode == "sport" then
         electrics.values.modeColor = "#ffff00"
+    elseif driveMode == "corsa" then
+        electrics.values.modeColor = "#ff0000"
     elseif driveMode == "offroad" then
         electrics.values.modeColor = "#f5a442"
     elseif driveMode == "off" then
