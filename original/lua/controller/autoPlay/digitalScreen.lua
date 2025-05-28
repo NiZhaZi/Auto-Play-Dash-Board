@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.14 alpha
--- final edit - 2025.5.22 12:57
+-- version 0.0.15 alpha
+-- final edit - 2025.5.28 18:23
 
 local M = {}
 
@@ -160,6 +160,12 @@ local function updateGFX(dt)
     electrics.values.comsuBattery = consumption.electricity
     electrics.values.mileRange = range.rest
 
+    if electrics.values.gear ~= "R" then
+        electrics.values.consoleScreen = math.min(electrics.values.ignitionLevel / 2, 1)
+    else
+        electrics.values.consoleScreen = electrics.values.ignitionLevel
+    end
+
 end
 
 local function init(jbeamData)
@@ -209,6 +215,12 @@ local function init(jbeamData)
 
     local batteryName =  jbeamData.energyStorage or "mainBattery"
     battery = energyStorage.getStorage(batteryName)
+
+    if electrics.values.gear ~= "R" then
+        electrics.values.consoleScreen = electrics.values.ignitionLevel / 2
+    else
+        electrics.values.consoleScreen = electrics.values.ignitionLevel
+    end
 
 end
 
