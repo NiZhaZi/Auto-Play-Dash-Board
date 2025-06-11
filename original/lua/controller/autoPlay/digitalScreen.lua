@@ -57,6 +57,16 @@ local function updateGFX(dt)
 
     electrics.values.temperature = tostring(floor(obj:getEnvTemperature() - 273.15 + 0.5) or 0) .. "℃"
 
+    local timeH12
+    if timeH < 12 then
+        timeH12 = timeH
+    else
+        timeH12 = timeH - 12
+    end
+
+    electrics.values.hourNeedle = min(timeH12 * 30 + timeM * 0.5, 360)
+    electrics.values.minuNeedle = timeM * 6
+
     local power = 0
     local regen = 0
     for _, v in ipairs(motors) do
