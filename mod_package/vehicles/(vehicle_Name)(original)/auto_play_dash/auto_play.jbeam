@@ -10,11 +10,13 @@
             ["type", "default", "description"],
             ["navi_screen", "", "navi screen"],
 
-            ["dash_battery_display","", "battery display"],
-            ["dash_fuel_display","", "fuel display"],
-            ["dash_awd_display","", "AWD display"],
-            ["dash_rpm_display","", "RPM display"],
-            ["dash_power_display","", "power display"],
+            ["dash_temperature_unit", "dash_temperature_unit_celsius", "temperature unit", {"coreSlot":true}],
+            ["dash_velocity_display", "dash_velocity_unit_kph", "velocity display", {"coreSlot":true}],
+            ["dash_battery_display", "", "battery display"],
+            ["dash_fuel_display", "", "fuel display"],
+            ["dash_awd_display", "", "AWD display"],
+            ["dash_rpm_display", "", "RPM display"],
+            ["dash_power_display", "", "power display"],
         ],
         "controller": [
             ["fileName"],
@@ -116,6 +118,80 @@
         },
     },
 
+    "dash_temperature_unit_celsius": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Temperature Celsius",
+            "value":0,
+        },
+        "slotType" : "dash_temperature_unit",
+        "gauge": {
+            "configuration_temperature": {
+                "cells":{
+                    "temperature": {
+                        "unit":"C",
+                    }
+                }
+            },
+        }
+    },
+
+    "dash_temperature_unit_fahrenheit": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Temperature Fahrenheit",
+            "value":0,
+        },
+        "slotType" : "dash_temperature_unit",
+        "gauge": {
+            "configuration_temperature": {
+                "cells":{
+                    "temperature": {
+                        "unit":"F",
+                    }
+                }
+            },
+        }
+    },
+
+    "dash_velocity_unit_kph": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Velocity Display (kph)",
+            "value":0,
+        },
+        "slotType" : "dash_velocity_display",
+        "gauge": {
+            "configuration_velocity": {
+                "cells":{
+                    "velocity": {
+                        "label": "VELOCITY",
+                        "unit":"km/h",
+                    }
+                }
+            },
+        }
+    },
+
+    "dash_velocity_unit_mph": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Velocity Display (mph)",
+            "value":0,
+        },
+        "slotType" : "dash_velocity_display",
+        "gauge": {
+            "configuration_velocity": {
+                "cells":{
+                    "velocity": {
+                        "label": "VELOCITY",
+                        "unit":"MPH",
+                    }
+                }
+            },
+        }
+    },
+
     "dash_battery_display": {
         "information":{
             "authors":"BeamNG",
@@ -123,14 +199,63 @@
             "value":0,
         },
         "slotType" : "dash_battery_display",
+        "slots":[
+            ["type", "default", "description"],
+            ["battery_unit", "battery_unit_kWh", "Battery Unit", {"coreSlot":true}],
+            ["battery_consumption_unit", "battery_consumption_unit_kphk", "Battery Consumption Unit", {"coreSlot":true}],
+        ],
+    },
+
+    "battery_unit_kWh": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Battery Volume Unit kWh",
+            "value":0,
+        },
+        "slotType" : "battery_unit",
         "gauge": {
             "configuration_battery": {
                 "cells":{
                     "battery": {
                         "label": "BATTERY",
-                        "unit":"kWh",
-                        "path":"electrics.batteryVolume",
-                        "tenPrecision":0
+                        "tenPrecision":0,
+                        "unit":"kWh"
+                    }
+                }
+            },
+        }
+    },
+
+    "battery_consumption_unit_kphk": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Battery Consumption Unit kWh/100km",
+            "value":0,
+        },
+        "slotType" : "battery_consumption_unit",
+        "gauge": {
+            "configuration_batteryConsumption": {
+                "cells":{
+                    "batteryConsumption": {
+                        "consumptionUnit": "kWh/100km",
+                    }
+                }
+            },
+        }
+    },
+
+    "battery_consumption_unit_mpge_US": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Battery Consumption Unit mpge",
+            "value":0,
+        },
+        "slotType" : "battery_consumption_unit",
+        "gauge": {
+            "configuration_batteryConsumption": {
+                "cells":{
+                    "batteryConsumption": {
+                        "consumptionUnit": "MPGe",
                     }
                 }
             },
@@ -144,14 +269,137 @@
             "value":0,
         },
         "slotType" : "dash_fuel_display",
+        "slots":[
+            ["type", "default", "description"],
+            ["fuel_unit", "fuel_unit_L", "Fuel Unit", {"coreSlot":true}],
+            ["fuel_consumption_unit", "fuel_consumption_unit_lphk", "Fuel Consumption Unit", {"coreSlot":true}],
+        ],
+        "gauge": {
+            "configuration_fuel": {
+                "cells":{
+                    "fuel": {
+                        
+                    }
+                }
+            },
+        }
+    },
+
+    "fuel_unit_L": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Fuel Volume Unit Liter",
+            "value":0,
+        },
+        "slotType" : "fuel_unit",
         "gauge": {
             "configuration_fuel": {
                 "cells":{
                     "fuel": {
                         "label": "FUEL",
-                        "unit":"L",
                         "path":"electrics.fuelVolume",
-                        "tenPrecision":0
+                        "tenPrecision":0,
+                        "unit":"L"
+                    }
+                }
+            },
+        }
+    },
+
+    "fuel_unit_Gal_US": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Fuel Volume Unit Gallon (US)",
+            "value":0,
+        },
+        "slotType" : "fuel_unit",
+        "gauge": {
+            "configuration_fuel": {
+                "cells":{
+                    "fuel": {
+                        "label": "FUEL",
+                        "path":"electrics.fuelVolume",
+                        "tenPrecision":0,
+                        "unit": "Gal",
+                        "region": "US"
+                    }
+                }
+            },
+        }
+    },
+
+    "fuel_unit_Gal_UK": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Fuel Volume Unit Gallon (UK)",
+            "value":0,
+        },
+        "slotType" : "fuel_unit",
+        "gauge": {
+            "configuration_fuel": {
+                "cells":{
+                    "fuel": {
+                        "label": "FUEL",
+                        "path":"electrics.fuelVolume",
+                        "tenPrecision":0,
+                        "unit": "Gal",
+                        "region": "UK"
+                    }
+                }
+            },
+        }
+    },
+
+    "fuel_consumption_unit_lphk": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Fuel Consumption Unit L/100km",
+            "value":0,
+        },
+        "slotType" : "fuel_consumption_unit",
+        "gauge": {
+            "configuration_fuelConsumption": {
+                "cells":{
+                    "fuelConsumption": {
+                        "consumptionUnit": "L/100km",
+                    }
+                }
+            },
+        }
+    },
+
+    "fuel_consumption_unit_mpg_US": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Fuel Consumption Unit mpg (US)",
+            "value":0,
+        },
+        "slotType" : "fuel_consumption_unit",
+        "gauge": {
+            "configuration_fuelConsumption": {
+                "cells":{
+                    "fuelConsumption": {
+                        "consumptionUnit": "MPG",
+                        "consumptionRegion": "US",
+                    }
+                }
+            },
+        }
+    },
+
+    "fuel_consumption_unit_mpg_UK": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"Fuel Consumption Unit mpg  (US)",
+            "value":0,
+        },
+        "slotType" : "fuel_consumption_unit",
+        "gauge": {
+            "configuration_fuelConsumption": {
+                "cells":{
+                    "fuelConsumption": {
+                        "consumptionUnit": "MPG",
+                        "consumptionRegion": "UK",
                     }
                 }
             },

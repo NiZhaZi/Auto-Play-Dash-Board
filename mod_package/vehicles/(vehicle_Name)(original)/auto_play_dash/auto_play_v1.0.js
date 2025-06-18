@@ -18,6 +18,15 @@ angular.module('gaugesScreen', [])
     var awd = {};
     var environment = {};
 
+    var velocityUnit;
+    var fuelUnit;
+    var GalRegion;
+    var fuelConsumptionUnit;
+    var fuelConsumptionRegion;
+    var batteryConsumptionUnit;
+    var batteryConsumptionRegion;
+    var temperatureUnit;
+
     var ready = false;
     // var customUnits= ["",undefined,"bool","gear","pressureFromPsi","light"]
 
@@ -63,10 +72,12 @@ angular.module('gaugesScreen', [])
       velocity.root = hu('#Info_0', svg);
       velocity.velocity = hu("#velocity", velocity.root);
       velocity.velocity_txt = hu("#velocity_txt", velocity.root);
+      velocity.velocity_unit_txt = hu("#velocity_unit_txt", velocity.root);
       velocity.gear_txt = hu("#gear_txt", velocity.root);
       velocity.hybrid_mod_txt = hu("#hybrid_mod_txt", velocity.root);
       velocity.mode_txt = hu("#mode_txt", velocity.root);
       velocity.range_txt = hu("#range_txt", velocity.root);
+      velocity.range_unit_txt = hu("#range_unit_txt", velocity.root);
 
       fuel.root = hu('#Info_1', svg);
       fuel.fuel = hu("#fuel", fuel.root);
@@ -93,6 +104,7 @@ angular.module('gaugesScreen', [])
       power.power_engine_txt = hu("#power_engine_txt", power.root);
       power.power_engine_unit_txt = hu("#power_engine_unit_txt", power.root);
       power.mile_txt = hu("#mile_txt", power.root);
+      power.mile_unit_txt = hu("#mile_unit_txt", power.root);
 
       signal.root = hu('#Info_4', svg);
       signal.light_lowbeam = hu("#light_lowbeam", signal.root);
@@ -130,10 +142,44 @@ angular.module('gaugesScreen', [])
 
       cellsDescription = data.cells;
 
+      if ("temperature" in cellsDescription){
+        temperatureUnit = cellsDescription.temperature.unit;
+      }else{
+
+      }
+
+      if ("velocity" in cellsDescription){
+        velocity.velocity_unit_txt.text(cellsDescription.velocity.unit);
+        velocityUnit = cellsDescription.velocity.unit;
+        if(cellsDescription.velocity.unit == "MPH"){
+          velocity.range_unit_txt.text("miles range");
+          power.mile_unit_txt.text("miles")
+        }
+        else{
+          velocity.range_unit_txt.text("km range");
+          power.mile_unit_txt.text("km")
+        }
+      }else{
+
+      }
+
+      if ("fuelConsumption" in cellsDescription){
+        fuelConsumptionUnit = cellsDescription.fuelConsumption.consumptionUnit;
+        fuel.fuel_consumption_unit_txt.text(cellsDescription.fuelConsumption.consumptionUnit);
+        if(cellsDescription.fuelConsumption.consumptionUnit == "MPG"){
+          fuelConsumptionRegion = cellsDescription.fuelConsumption.consumptionRegion;
+        }
+      }else{
+
+      }
+
       if ("fuel" in cellsDescription){
-        fuel.fuel_txt.text(cellsDescription.fuel.path)
-        fuel.fuel_unit_txt.text(cellsDescription.fuel.unit)
-        fuel.fuel_consumption_unit_txt.text("L/100km");
+        fuel.fuel_txt.text(cellsDescription.fuel.path);
+        fuel.fuel_unit_txt.text(cellsDescription.fuel.unit);
+        fuelUnit = cellsDescription.fuel.unit;
+        if(cellsDescription.fuel.unit == "Gal"){
+          GalRegion = cellsDescription.fuel.region;
+        }
       }else{
         electrics.fuel_stop0.css({"stop-color": "#3c3c3c"} );
         signal.fuel_logo.css({"fill": "none"} );
@@ -146,10 +192,16 @@ angular.module('gaugesScreen', [])
         fuel.fuel_consumption_unit_txt.text("");
       }
 
+      if ("batteryConsumption" in cellsDescription){
+        batteryConsumptionUnit = cellsDescription.batteryConsumption.consumptionUnit;
+        battery.battery_consumption_unit_txt.text(cellsDescription.batteryConsumption.consumptionUnit);
+      }else{
+        
+      }
+
       if ("battery" in cellsDescription){
-        battery.battery_txt.text(cellsDescription.battery.path)
-        battery.battery_unit_txt.text(cellsDescription.battery.unit)
-        battery.battery_consumption_unit_txt.text("kWh/100km");
+        battery.battery_txt.text(cellsDescription.battery.path);
+        battery.battery_unit_txt.text(cellsDescription.battery.unit);
       }else{
         electrics.battery_stop_0.css({"stop-color": "#3c3c3c"} );
         signal.battery_logo.css({"fill": "none"} );
@@ -204,16 +256,22 @@ angular.module('gaugesScreen', [])
 
     $window.updateData = (data) => {
     
-      electrics.velo_stop0.n.setAttribute("offset", data.electrics.wheelspeed / 0.2778 / data.electrics.maxSpeed + 0.001 );
-      electrics.velo_stop1.n.setAttribute("offset", data.electrics.wheelspeed / 0.2778 / data.electrics.maxSpeed - 0.001 );
-      if(data.electrics.wheelspeed / 0.2778 > 150){
+      electrics.velo_stop0.n.setAttribute("offset", data.electrics.wheelspeed * 3.6 / data.electrics.maxSpeed + 0.001 );
+      electrics.velo_stop1.n.setAttribute("offset", data.electrics.wheelspeed * 3.6 / data.electrics.maxSpeed - 0.001 );
+      if(data.electrics.wheelspeed * 3.6 > 150){
         electrics.velo_stop0.css({"stop-color": "#ff0000"});
       }
       else{
         electrics.velo_stop0.css({"stop-color": "#00ffff"});
       }
       
-      velocity.velocity_txt.text((data.electrics.wheelspeed / 0.2778).toFixed(0));
+      if(velocityUnit == "MPH"){
+        velocity.velocity_txt.text((data.electrics.wheelspeed * 2.24).toFixed(0));
+      }
+      else{
+        velocity.velocity_txt.text((data.electrics.wheelspeed * 3.60).toFixed(0));
+      }
+      
       
       velocity.gear_txt.text(data.electrics.gear);
       velocity.hybrid_mod_txt.text(data.electrics.hybridModeTxt);
@@ -236,7 +294,13 @@ angular.module('gaugesScreen', [])
         velocity.hybrid_mod_txt.n.setAttribute("fill", "#ffffff" );
       }
       velocity.mode_txt.text(data.electrics.modeName.toUpperCase()).css({"fill": data.electrics.modeColor});
-      velocity.range_txt.text((data.electrics.mileRange * 1.0).toFixed(1));
+
+      if(velocityUnit == "MPH"){
+        velocity.range_txt.text((data.electrics.mileRange * 0.6214).toFixed(1));
+      }
+      else{
+        velocity.range_txt.text((data.electrics.mileRange * 1.0).toFixed(1));
+      }      
 
       
       if ("fuel" in cellsDescription){
@@ -250,8 +314,31 @@ angular.module('gaugesScreen', [])
         }
         electrics.fuel_stop0.n.setAttribute("offset", data.electrics.fuel - 0.001 );
         electrics.fuel_stop1.n.setAttribute("offset", data.electrics.fuel + 0.001 );
-        fuel.fuel_txt.text((data.electrics.fuelVolume * 1.0).toFixed(0));
-        fuel.fuel_consumption_txt.text((data.electrics.comsuFuel * 1.0).toFixed(1));
+
+        if(fuelUnit == "Gal"){
+          if(GalRegion == "US"){
+            fuel.fuel_txt.text((data.electrics.fuelVolume * 0.264).toFixed(0));
+          }
+          else if(GalRegion == "UK"){
+            fuel.fuel_txt.text((data.electrics.fuelVolume * 0.220).toFixed(0));
+          }
+        }
+        else{
+          fuel.fuel_txt.text((data.electrics.fuelVolume * 1.0).toFixed(0));
+        }
+        
+        if(fuelConsumptionUnit == "MPG"){
+          if(fuelConsumptionRegion == "US"){
+            fuel.fuel_consumption_txt.text((235.21 / data.electrics.comsuFuel).toFixed(1));
+          }
+          else if(fuelConsumptionRegion == "UK"){
+            fuel.fuel_consumption_txt.text((282.48 / data.electrics.comsuFuel).toFixed(1));
+          }
+        }
+        else{
+          fuel.fuel_consumption_txt.text((data.electrics.comsuFuel * 1.0).toFixed(1));
+        }
+        
       }
       
 
@@ -267,7 +354,14 @@ angular.module('gaugesScreen', [])
         electrics.battery_stop_0.n.setAttribute("offset", data.electrics.evfuel / 100 - 0.001 );
         electrics.battery_stop_1.n.setAttribute("offset", data.electrics.evfuel / 100 + 0.001 );
         battery.battery_txt.text((data.electrics.batteryVolume * 1.0).toFixed(0));
-        battery.battery_consumption_txt.text((data.electrics.comsuBattery * 1.0).toFixed(1));
+
+        if(batteryConsumptionUnit == "MPGe"){
+          battery.battery_consumption_txt.text((data.electrics.comsuBattery * 2094.33).toFixed(1));
+        }
+        else{
+          battery.battery_consumption_txt.text((data.electrics.comsuBattery * 1.0).toFixed(1));
+        }
+        
       }
       
       if ("rpm" in cellsDescription){
@@ -318,7 +412,13 @@ angular.module('gaugesScreen', [])
         power.power_motor_txt.text(motorPower);
       }
 
-      var mile = (data.electrics.singleMile * 1.0).toFixed(1);
+      var mile;
+      if(velocity.velocity_unit_txt == "MPH"){
+        mile = (data.electrics.singleMile * 0.6214).toFixed(1)
+      }
+      else{
+        mile = (data.electrics.singleMile * 1.0).toFixed(1)
+      }
       power.mile_txt.text(mile);
 
       signal.light_checkengine.n.setAttribute("opacity", data.electrics.checkengine );
@@ -362,7 +462,17 @@ angular.module('gaugesScreen', [])
       electrics.ot_stop_1.n.setAttribute("offset", data.electrics.oiltemp / 200 - 0.001 );
 
       environment.time.text(data.electrics.time);
-      environment.temperature.text(data.electrics.temperature);
+      var formedTemp;
+      if(temperatureUnit == "C"){
+        formedTemp = (data.electrics.temperature - 273.15).toFixed(0).toString() + "℃"
+      }
+      else if(temperatureUnit == "F"){
+        formedTemp = ((data.electrics.temperature - 273.15) * 9 / 5 + 32).toFixed(0).toString() + "℉"
+      }
+      else{
+        formedTemp = data.electrics.temperature.toFixed(0).toString() + "K"
+      }
+      environment.temperature.text(formedTemp);
       
     }
   })

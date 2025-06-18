@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.15 alpha
--- final edit - 2025.5.28 18:23
+-- version 0.0.16 alpha
+-- final edit - 2025.6.18 23:58
 
 local M = {}
 
@@ -55,7 +55,8 @@ local function updateGFX(dt)
 
     electrics.values.time = (timeStr(timeH) .. ":" .. timeStr(timeM)) or ":"
 
-    electrics.values.temperature = tostring(floor(obj:getEnvTemperature() - 273.15 + 0.5) or 0) .. "℃"
+    -- electrics.values.temperature = tostring(floor(obj:getEnvTemperature() - 273.15 + 0.5) or 0) .. "℃"
+    electrics.values.temperature = obj:getEnvTemperature()
 
     local timeH12
     if timeH < 12 then
