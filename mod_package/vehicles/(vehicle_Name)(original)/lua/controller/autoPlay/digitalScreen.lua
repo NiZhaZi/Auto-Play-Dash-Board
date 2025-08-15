@@ -1,7 +1,7 @@
 -- digitalScreen.lua - 2024.8.20 22:13 - digital screen control
 -- by NZZ
--- version 0.0.16 alpha
--- final edit - 2025.6.18 23:58
+-- version 0.0.17 alpha
+-- final edit - 2025.8.15 19:05
 
 local M = {}
 
@@ -29,6 +29,9 @@ local rearDiff = nil
 local battery = nil
 
 local function timeStr(time)
+    if not time then
+        return "00"
+    end
     if time < 10 then
         return "0" .. tostring(time)
     else
@@ -59,14 +62,16 @@ local function updateGFX(dt)
     electrics.values.temperature = obj:getEnvTemperature()
 
     local timeH12
-    if timeH < 12 then
+    if not timeH then
+        timeH12 = 0
+    elseif timeH < 12 then
         timeH12 = timeH
     else
         timeH12 = timeH - 12
     end
 
-    electrics.values.hourNeedle = min(timeH12 * 30 + timeM * 0.5, 360)
-    electrics.values.minuNeedle = timeM * 6
+    electrics.values.hourNeedle = min((timeH12 or 0) * 30 + (timeM or 0) * 0.5, 360)
+    electrics.values.minuNeedle = (timeM or 0) * 6
 
     local power = 0
     local regen = 0
