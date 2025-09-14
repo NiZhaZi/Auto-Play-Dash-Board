@@ -272,8 +272,13 @@ angular.module('gaugesScreen', [])
         velocity.velocity_txt.text((data.electrics.wheelspeed * 3.60).toFixed(0));
       }
       
-      
-      velocity.gear_txt.text(data.electrics.gear);
+      if(data.electrics.gear == "D"){
+        velocity.gear_txt.text(data.electrics.gear + data.electrics.gearIndex);
+      }
+      else{
+        velocity.gear_txt.text(data.electrics.gear);
+      }
+
       velocity.hybrid_mod_txt.text(data.electrics.hybridModeTxt);
       if(data.electrics.hybridModeTxt == "AUTO"){
         velocity.hybrid_mod_txt.n.setAttribute("fill", "#33aaff" );

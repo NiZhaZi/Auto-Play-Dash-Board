@@ -44,6 +44,7 @@
             "displayData": {
                 "electrics": [
                     "gear",
+                    "gearIndex",
                     "fuel",
                     "wheelspeed",
                     "linelock",
