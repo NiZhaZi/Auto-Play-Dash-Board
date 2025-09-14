@@ -28,7 +28,7 @@
     "persistentId" : "ed4c0c35-2305-4f49-9813-b2f4e088359b",
     "Stages": [
       {
-        "baseColorMap": "vehicles/common/screen_generic_b.color.png",
+        "baseColorMap": "vehicles/common/null.dds",
         "metallicFactor": 1,
        "emissiveFactor": [
          1,
@@ -36,8 +36,8 @@
          1
        ],
        "emissiveMap": "/vehicles//auto_play_dash/navi/auto_play_screen_onlylogo.png",
-        "metallicMap": "vehicles/common/screen_generic_m.data.png",
-        "roughnessMap": "vehicles/common/screen_generic_r.data.png",
+        "metallicMap": null,
+        "roughnessMap": null,
         "useAnisotropic": true
       },
       {},
