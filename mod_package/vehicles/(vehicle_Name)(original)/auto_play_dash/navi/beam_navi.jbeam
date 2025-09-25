@@ -1,0 +1,23 @@
+{
+"navi_screen_beam": {
+    "information":{
+        "authors":"BeamNG",
+        "name":"beamng Navi screen",
+        "value":400,
+    },
+    "slotType" : "navi_screen",
+    "slots":[
+        ["type", "default", "description"],
+    ],
+    "controller": [
+        ["fileName"],
+        ["beamNavigator"]
+    ],
+    "beamNavigator": {
+        "screenMaterialName":"@navi",
+        "textureHeight":128,
+        "textureWidth":256,
+        "textureFPS": 30,
+    }
+}
+}
