@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>演示测试页 · Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --c1: #4f7cff;
+    --c2: #a855f7;
+    --bg: #070a14;
+    --particle: 120, 180, 255;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: radial-gradient(circle at 25% 15%, #16204a 0%, var(--bg) 55%) fixed;
+    color: #e8eefc;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background .6s ease;
+  }
+
+  #bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    padding: 32px 20px;
+  }
+
+  /* ---------- 主卡片 ---------- */
+  .card {
+    width: min(680px, 100%);
+    padding: 46px 40px;
+    border-radius: 24px;
+    text-align: center;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .5);
+    animation: rise .9s cubic-bezier(.2, .8, .2, 1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(26px) scale(.97); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: .16em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    color: #b9c8ee;
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .14);
+    margin-bottom: 22px;
+  }
+
+  h1 {
+    font-size: clamp(23px, 4vw, 38px);
+    line-height: 1.35;
+    letter-spacing: -.02em;
+    font-weight: 700;
+  }
+
+  .grad {
+    background: linear-gradient(90deg, var(--c1), var(--c2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: background .5s ease;
+  }
+
+  .sub {
+    margin-top: 18px;
+    min-height: 1.6em;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #9fb0d4;
+  }
+
+  .actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    padding: 13px 26px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: transform .15s ease, box-shadow .3s ease, background .35s ease;
+  }
+
+  .btn:active { transform: scale(.95); }
+
+  .btn.primary {
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    box-shadow: 0 10px 26px rgba(80, 120, 255, .35);
+  }
+
+  .btn.primary:hover { box-shadow: 0 12px 32px rgba(120, 100, 255, .5); }
+
+  .btn.ghost {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .18);
+  }
+
+  .btn.ghost:hover { background: rgba(255, 255, 255, .15); }
+
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .55);
+    transform: scale(0);
+    pointer-events: none;
+    animation: ripple .65s ease-out forwards;
+  }
+
+  @keyframes ripple {
+    to { transform: scale(3.2); opacity: 0; }
+  }
+
+  /* ---------- 统计条 ---------- */
+  .stats {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: rise .9s .15s cubic-bezier(.2, .8, .2, 1) both;
+  }
+
+  .stat {
+    min-width: 108px;
+    padding: 14px 20px;
+    border-radius: 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, .045);
+    border: 1px solid rgba(255, 255, 255, .1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .stat b {
+    display: block;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(90deg, var(--c1), var(--c2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .stat span {
+    font-size: 12px;
+    color: #8296bd;
+    letter-spacing: .05em;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 34px 22px; }
+    .actions { gap: 10px; }
+    .btn { padding: 12px 20px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<main class="wrap">
+  <div class="card">
+    <div class="badge">DEMO · 无实际意义</div>
+    <h1>这是一个 <span class="grad">演示测试</span> 页面</h1>
+    <p class="sub" id="typer"></p>
+    <div class="actions">
+      <button class="btn primary" id="countBtn">点我一下 · <span id="count">0</span></button>
+      <button class="btn ghost" id="themeBtn">换个心情</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="sParticle">0</b><span>粒子数</span></div>
+    <div class="stat"><b id="sFps">0</b><span>FPS</span></div>
+    <div class="stat"><b id="sTime">0</b><span>运行秒数</span></div>
+    <div class="stat"><b id="sClick">0</b><span>点击次数</span></div>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============ 1. 粒子背景 ============ */
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, particles = [];
+  let particleRGB = '120, 180, 255';
+
+  function buildParticles() {
+    const count = Math.min(130, Math.max(40, Math.floor(W * H / 14000)));
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        r: Math.random() * 1.7 + 0.7
+      });
+    }
+    document.getElementById('sParticle').textContent = count;
+  }
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildParticles();
+  }
+
+  const LINK_DIST = 132;
+  const LINK_DIST2 = LINK_DIST * LINK_DIST;
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // 移动 + 绘制粒子
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + particleRGB + ', .85)';
+      ctx.fill();
+    }
+
+    // 连线
+    for (let i = 0; i < particles.length; i++) {
+      const a = particles[i];
+      for (let j = i + 1; j < particles.length; j++) {
+        const b = particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < LINK_DIST2) {
+          const alpha = (1 - Math.sqrt(d2) / LINK_DIST) * 0.32;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = 'rgba(' + particleRGB + ', ' + alpha + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  /* ============ 2. FPS / 计时 ============ */
+  let frames = 0;
+  let lastFpsTime = performance.now();
+  const startTime = performance.now();
+  const fpsEl = document.getElementById('sFps');
+  const timeEl = document.getElementById('sTime');
+
+  function loop(now) {
+    draw();
+
+    frames++;
+    if (now - lastFpsTime >= 1000) {
+      fpsEl.textContent = frames;
+      frames = 0;
+      lastFpsTime = now;
+      timeEl.textContent = Math.floor((now - startTime) / 1000);
+    }
+    requestAnimationFrame(loop);
+  }
+
+  /* ============ 3. 打字机文字 ============ */
+  const SENTENCE = '它不解决任何问题，也不产出任何价值，但它会动。';
+  const typerEl = document.getElementById('typer');
+  let ti = 0;
+
+  function typeWriter() {
+    if (ti <= SENTENCE.length) {
+      typerEl.textContent = SENTENCE.slice(0, ti) + (ti < SENTENCE.length ? '▌' : '');
+      ti++;
+      setTimeout(typeWriter, 75);
+    } else {
+      typerEl.textContent = SENTENCE;
+    }
+  }
+
+  /* ============ 4. 点击计数 + 涟漪 ============ */
+  let clicks = 0;
+  const countEl = document.getElementById('count');
+  const clickStatEl = document.getElementById('sClick');
+
+  function makeRipple(btn, e) {
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const span = document.createElement('span');
+    span.className = 'ripple';
+    span.style.width = span.style.height = size + 'px';
+    span.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    span.style.top = (e.clientY - rect.top - size / 2) + 'px';
+    btn.appendChild(span);
+    setTimeout(function () { span.remove(); }, 650);
+  }
+
+  const countBtn = document.getElementById('countBtn');
+  countBtn.addEventListener('click', function (e) {
+    makeRipple(countBtn, e);
+    clicks++;
+    countEl.textContent = clicks;
+    clickStatEl.textContent = clicks;
+  });
+
+  /* ============ 5. 主题切换 ============ */
+  const THEMES = [
+    { c1: '#4f7cff', c2: '#a855f7', bg: '#070a14', p: '120, 180, 255' },
+    { c1: '#00e5c0', c2: '#3b82f6', bg: '#04100f', p: '110, 240, 210' },
+    { c1: '#ff7a59', c2: '#ff2d78', bg: '#14060c', p: '255, 140, 140' },
+    { c1: '#fbbf24', c2: '#f472b6', bg: '#130f06', p: '255, 200, 120' },
+    { c1: '#8b5cf6', c2: '#22d3ee', bg: '#0a0714', p: '180, 150, 255' }
+  ];
+  let themeIndex = 0;
+
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', function (e) {
+    makeRipple(themeBtn, e);
+    themeIndex = (themeIndex + 1) % THEMES.length;
+    const t = THEMES[themeIndex];
+    const root = document.documentElement;
+    root.style.setProperty('--c1', t.c1);
+    root.style.setProperty('--c2', t.c2);
+    root.style.setProperty('--bg', t.bg);
+    document.body.style.background =
+      'radial-gradient(circle at 25% 15%, ' + t.bg + ' 0%, ' + t.bg + ' 55%) fixed';
+    particleRGB = t.p;
+  });
+
+  /* ============ 启动 ============ */
+  window.addEventListener('resize', resize);
+  resize();
+  typeWriter();
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
