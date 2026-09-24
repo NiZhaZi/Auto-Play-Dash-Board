@@ -1,0 +1,17 @@
+@font-face {
+  font-family: Kanit;
+  src: url(/ui/common/Kanit-SemiBold.ttf);
+}
+html, body {
+  width: 1024px;
+  height: 1024px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+}
+#gauge {
+  display: block;
+  width: 1024px;
+  height: 1024px;
+}

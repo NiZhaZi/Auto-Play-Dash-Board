@@ -1,0 +1,36 @@
+{
+  "dash_velocity_display_modern": {
+    "information": {
+      "authors": "OpenAI / BeamNG template adaptation",
+      "name": "Velocity (modern cluster)",
+      "value": 0
+    },
+    "slotType": "dash_velocity_display",
+    "controller": [
+      ["fileName"],
+      ["autoPlay/autoPlayGaugesVelocity", {"name":"gauge_velocity"}]
+    ],
+    "gauge_velocity": {
+      "displayData": {
+        "electrics": [
+          "wheelspeed",
+          "fuel",
+          "mileRange",
+          "autoPlayUnitSystem"
+        ]
+      },
+      "configuration": {
+        "materialName": "@auto_play_screen_velocity",
+        "fileName": "velocity_modern/auto_play_velocity_modern.html",
+        "displayWidth": 1024,
+        "displayHeight": 1024,
+        "maxSpeedMetric": 260,
+        "maxSpeedImperial": 160,
+
+        // Gauge accent/theme color. Use #RRGGBB (or #RGB).
+        "themeColor": "#00D7C0",
+        "cells": {}
+      }
+    }
+  }
+}

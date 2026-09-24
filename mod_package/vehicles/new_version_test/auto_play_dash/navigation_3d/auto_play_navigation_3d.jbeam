@@ -1,0 +1,35 @@
+{
+  "dash_navigation_display_3d": {
+    "information": {
+      "authors": "OpenAI / BeamNG navigator integration",
+      "name": "Navigation (3D perspective 512x512)",
+      "value": 0
+    },
+    "slotType": "dash_navigation_display",
+    "controller": [
+      ["fileName"],
+      ["autoPlay/autoPlayNavigation3D", {"name":"navigation_3d"}]
+    ],
+    "navigation_3d": {
+      "materialName": "@auto_play_screen_navigation",
+      "fileName": "navigation_3d/auto_play_navigation_3d.html",
+      "displayWidth": 512,
+      "displayHeight": 512,
+      "textureFPS": 30,
+
+      // Map theme: "dark" or "apple".
+      "mapTheme": "dark",
+
+      // Accent/theme color in hexadecimal (#RRGGBB or #RGB).
+      // Suggested Apple Maps blue: #0A84FF
+      "themeColor": "#00D7C0",
+
+      // 3D-perspective appearance. These can be tuned without editing HTML.
+      "mapPitch": 56,
+      "mapScale": 1.24,
+      "mapYOffset": 38,
+      "mapPerspective": 520,
+      "mapZoom": 78
+    }
+  }
+}

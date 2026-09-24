@@ -1,0 +1,31 @@
+{
+    "dash_rpm_display_fusion": {
+        "information":{
+            "authors":"BeamNG",
+            "name":"RPM (fusion)",
+            "value":0,
+        },
+        "slotType" : "dash_rpm_display",
+        "controller": [
+            ["fileName"],
+            ["autoPlay/autoPlayGaugesRPM", {"name":"gauge_rpm", }],
+        ],
+        "gauge_rpm": {
+            "displayData": {
+                "electrics": [
+                    "rpmTacho",
+                    "maxrpm",
+                    "watertemp",
+                ],
+            },
+            "configuration": {
+                "materialName": "@auto_play_screen_rpm"
+                "vehicleName": ""
+                "fileName":"rpm_fusion/auto_play_rpm_fusion.html",
+                "displayWidth":1024,
+                "displayHeight":1024,
+                "cells":{} //incase no subparts
+            },
+        }
+    },
+}

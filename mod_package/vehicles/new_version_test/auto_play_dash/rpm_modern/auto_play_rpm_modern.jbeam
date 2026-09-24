@@ -1,0 +1,36 @@
+{
+  "dash_rpm_display_modern": {
+    "information": {
+      "authors": "OpenAI / BeamNG template adaptation",
+      "name": "RPM (modern cluster)",
+      "value": 0
+    },
+    "slotType": "dash_rpm_display",
+    "controller": [
+      ["fileName"],
+      ["autoPlay/autoPlayGaugesRPM", {"name":"gauge_rpm"}]
+    ],
+    "gauge_rpm": {
+      "displayData": {
+        "electrics": [
+          "rpmTacho",
+          "maxrpm",
+          "watertemp",
+          "gear",
+          "modeName",
+          "autoPlayUnitSystem"
+        ]
+      },
+      "configuration": {
+        "materialName": "@auto_play_screen_rpm",
+        "fileName": "rpm_modern/auto_play_rpm_modern.html",
+        "displayWidth": 1024,
+        "displayHeight": 1024,
+
+        // Gauge accent/theme color. Use #RRGGBB (or #RGB).
+        "themeColor": "#00D7C0",
+        "cells": {}
+      }
+    }
+  }
+}

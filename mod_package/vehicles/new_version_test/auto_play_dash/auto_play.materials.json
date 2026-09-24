@@ -1,0 +1,149 @@
+{
+  "auto_play_screen_rpm": {
+    "name": "auto_play_screen_rpm",
+    "mapTo": "auto_play_screen_rpm",
+    "class": "Material",
+    "Stages": [
+      {
+        "colorMap": "@auto_play_screen_rpm",
+        "emissive": true,
+        "specularMap": "vehicles/common/null.dds",
+        "specularPower": 32,
+        "useAnisotropic": true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows": false,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "translucentBlendOp": "None"
+  },
+  "auto_play_screen_velocity": {
+    "name": "auto_play_screen_velocity",
+    "mapTo": "auto_play_screen_velocity",
+    "class": "Material",
+    "Stages": [
+      {
+        "colorMap": "@auto_play_screen_velocity",
+        "emissive": true,
+        "specularMap": "vehicles/common/null.dds",
+        "specularPower": 32,
+        "useAnisotropic": true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows": false,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "translucentBlendOp": "None"
+  },
+  "auto_play_screen_navigation": {
+    "name": "auto_play_screen_navigation",
+    "mapTo": "auto_play_screen_navigation",
+    "class": "Material",
+    "Stages": [
+      {
+        "colorMap": "@auto_play_screen_navigation",
+        "emissive": true,
+        "specularMap": "vehicles/common/null.dds",
+        "specularPower": 32,
+        "useAnisotropic": true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows": false,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "translucentBlendOp": "None"
+  },
+  "auto_play_screen_center": {
+    "name": "auto_play_screen_center",
+    "mapTo": "auto_play_screen_center",
+    "class": "Material",
+    "Stages": [
+      {
+        "colorMap": "@auto_play_screen_navigation",
+        "emissive": true,
+        "specularMap": "vehicles/common/null.dds",
+        "specularPower": 32,
+        "useAnisotropic": true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows": false,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "translucentBlendOp": "None"
+  },
+  "auto_play_screen_map": {
+    "name": "auto_play_screen_map",
+    "mapTo": "auto_play_screen_map",
+    "class": "Material",
+    "Stages": [
+      {
+        "colorMap": "@auto_play_screen_navigation",
+        "emissive": true,
+        "specularMap": "vehicles/common/null.dds",
+        "specularPower": 32,
+        "useAnisotropic": true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows": false,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "translucentBlendOp": "None"
+  },
+  "auto_play_screen_navi": {
+    "name": "auto_play_screen_navi",
+    "mapTo": "auto_play_screen_navi",
+    "class": "Material",
+    "Stages": [
+      {
+        "colorMap": "@auto_play_screen_navigation",
+        "emissive": true,
+        "specularMap": "vehicles/common/null.dds",
+        "specularPower": 32,
+        "useAnisotropic": true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows": false,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "translucentBlendOp": "None"
+  },
+  "auto_play_screen_gps": {
+    "name": "auto_play_screen_gps",
+    "mapTo": "auto_play_screen_gps",
+    "class": "Material",
+    "Stages": [
+      {
+        "colorMap": "@auto_play_screen_navigation",
+        "emissive": true,
+        "specularMap": "vehicles/common/null.dds",
+        "specularPower": 32,
+        "useAnisotropic": true
+      },
+      {},
+      {},
+      {}
+    ],
+    "castShadows": false,
+    "materialTag0": "beamng",
+    "materialTag1": "vehicle",
+    "translucentBlendOp": "None"
+  }
+}

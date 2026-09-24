@@ -1,0 +1,428 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=512,height=512,initial-scale=1.0,user-scalable=no">
+  <title>Auto Play 3D Navigation</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 512px;
+      height: 512px;
+      overflow: hidden;
+      background: #06110f;
+    }
+    #mapCanvas {
+      display: block;
+      width: 512px;
+      height: 512px;
+      background: #06110f;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="mapCanvas" width="512" height="512"></canvas>
+  <script>
+  (function () {
+    'use strict';
+
+    const canvas = document.getElementById('mapCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = 512;
+    const H = 512;
+    const DEG = Math.PI / 180;
+
+    let rawMapData = {};
+    let nodes = new Map();
+    let edges = [];
+    let vehicle = { x: 0, y: 0, rotation: 0, zoom: 78, speed: 0, ignitionLevel: 2 };
+    let settings = { pitch: 56, scale: 1.24, y: 38, perspective: 520, mapTheme: 'dark', themeColor: '#00d7c0' };
+    let lastNativeUpdateMs = -Infinity;
+
+    function finite(v) {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : null;
+    }
+
+
+    function normalizeHexColor(value, fallback) {
+      const fb = fallback || '#00d7c0';
+      let s = String(value || '').trim();
+      if (/^#[0-9a-f]{3}$/i.test(s)) {
+        s = '#' + s.slice(1).split('').map(c => c + c).join('');
+      }
+      return /^#[0-9a-f]{6}$/i.test(s) ? s.toLowerCase() : fb.toLowerCase();
+    }
+
+    function hexToRgb(value, fallback) {
+      const h = normalizeHexColor(value, fallback || '#00d7c0');
+      return {
+        r: parseInt(h.slice(1, 3), 16),
+        g: parseInt(h.slice(3, 5), 16),
+        b: parseInt(h.slice(5, 7), 16)
+      };
+    }
+
+    function rgba(value, alpha, fallback) {
+      const c = hexToRgb(value, fallback || '#00d7c0');
+      return `rgba(${c.r}, ${c.g}, ${c.b}, ${Math.max(0, Math.min(1, Number(alpha) || 0))})`;
+    }
+
+    function mapThemeName() {
+      return String(settings.mapTheme || 'dark').toLowerCase() === 'apple' ? 'apple' : 'dark';
+    }
+
+    function xyFrom(raw) {
+      if (!raw) return null;
+
+      if (Array.isArray(raw)) {
+        if (raw.length >= 2) {
+          const x = finite(raw[0]);
+          const y = finite(raw[1]);
+          if (x !== null && y !== null) return [x, y];
+        }
+      } else if (typeof raw === 'object') {
+        let x = finite(raw.x);
+        let y = finite(raw.y);
+        if (x !== null && y !== null) return [x, y];
+
+        x = finite(raw[0] !== undefined ? raw[0] : raw['0']);
+        y = finite(raw[1] !== undefined ? raw[1] : raw['1']);
+        if (x !== null && y !== null) return [x, y];
+
+        const candidates = [raw.pos, raw.position, raw.p, raw.coords, raw.coord];
+        for (let i = 0; i < candidates.length; i++) {
+          const result = xyFrom(candidates[i]);
+          if (result) return result;
+        }
+      }
+      return null;
+    }
+
+    function normalizeNodes(data) {
+      const src = data && data.nodes ? data.nodes : {};
+      const out = new Map();
+      if (Array.isArray(src)) {
+        for (let i = 0; i < src.length; i++) {
+          const p = xyFrom(src[i]);
+          if (p) out.set(String(i), { id: String(i), x: p[0], y: p[1], raw: src[i] });
+        }
+      } else if (src && typeof src === 'object') {
+        Object.keys(src).forEach(id => {
+          const p = xyFrom(src[id]);
+          if (p) out.set(String(id), { id: String(id), x: p[0], y: p[1], raw: src[id] });
+        });
+      }
+      return out;
+    }
+
+    function collectReferences(value, validIds, refs, depth) {
+      if (depth > 4 || value === null || value === undefined) return;
+
+      if (typeof value === 'string' || typeof value === 'number') {
+        const key = String(value);
+        if (validIds.has(key)) refs.add(key);
+        return;
+      }
+
+      if (Array.isArray(value)) {
+        for (let i = 0; i < value.length; i++) collectReferences(value[i], validIds, refs, depth + 1);
+        return;
+      }
+
+      if (typeof value === 'object') {
+        Object.keys(value).forEach(k => {
+          if (validIds.has(String(k))) refs.add(String(k));
+          collectReferences(value[k], validIds, refs, depth + 1);
+        });
+      }
+    }
+
+    function buildEdges(nodeMap) {
+      const validIds = new Set(nodeMap.keys());
+      const unique = new Set();
+      const result = [];
+
+      nodeMap.forEach((node, id) => {
+        const raw = node.raw;
+        const refs = new Set();
+
+        if (raw && typeof raw === 'object') {
+          const likely = [
+            raw.links, raw.link, raw.neighbors, raw.neighbours, raw.connections,
+            raw.edges, raw[2], raw['2'], raw[3], raw['3'], raw[4], raw['4']
+          ];
+          for (let i = 0; i < likely.length; i++) {
+            collectReferences(likely[i], validIds, refs, 0);
+          }
+        }
+
+        refs.delete(id);
+        refs.forEach(other => {
+          if (!nodeMap.has(other)) return;
+          const key = id < other ? id + '|' + other : other + '|' + id;
+          if (!unique.has(key)) {
+            unique.add(key);
+            result.push([id, other]);
+          }
+        });
+      });
+
+      // Compatibility fallback for maps whose minified node format changed:
+      // if links could not be decoded, connect only very close nodes. This keeps
+      // the map usable without producing long cross-map lines.
+      if (result.length === 0 && nodeMap.size > 1) {
+        const arr = Array.from(nodeMap.values());
+        const maxDist2 = 55 * 55;
+        for (let i = 0; i < arr.length; i++) {
+          const a = arr[i];
+          const near = [];
+          for (let j = 0; j < arr.length; j++) {
+            if (i === j) continue;
+            const b = arr[j];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 <= maxDist2) near.push([d2, b]);
+          }
+          near.sort((u, v) => u[0] - v[0]);
+          for (let k = 0; k < Math.min(2, near.length); k++) {
+            const b = near[k][1];
+            const key = a.id < b.id ? a.id + '|' + b.id : b.id + '|' + a.id;
+            if (!unique.has(key)) {
+              unique.add(key);
+              result.push([a.id, b.id]);
+            }
+          }
+        }
+      }
+
+      return result;
+    }
+
+    function project(wx, wy) {
+      const dx = wx - vehicle.x;
+      const dy = wy - vehicle.y;
+
+      // BeamNG dashboard rotation is in degrees. Keep the car pointed upward.
+      const a = -(Number(vehicle.rotation) || 0) * DEG;
+      const c = Math.cos(a);
+      const s = Math.sin(a);
+      const side = dx * c - dy * s;
+      const forward = dx * s + dy * c;
+
+      const zoom = Math.max(55, Math.min(520, Number(vehicle.zoom) || 78));
+      const pxPerMeter = (W * 0.68 / zoom) * Math.max(0.65, Number(settings.scale) || 1);
+
+      // Stronger simulated 3D perspective for a closer, oblique bird's-eye view.
+      const horizonFactor = Math.max(0, Math.min(1, (forward + zoom * 0.10) / (zoom * 1.35)));
+      const pitch = Math.max(0, Math.min(65, Number(settings.pitch) || 56));
+      const pitchMix = pitch / 65;
+      const perspective = Math.max(280, Math.min(1400, Number(settings.perspective) || 520));
+      const perspectiveFactor = perspective / (perspective + Math.max(forward + zoom * 0.20, 0) * 3.1);
+      const depthScale = (1 - horizonFactor * (0.50 * pitchMix)) * (0.84 + 0.16 * perspectiveFactor);
+      const verticalScale = 1 - 0.45 * pitchMix;
+
+      const centerX = W / 2;
+      const centerY = H * 0.77 + (Number(settings.y) || 0);
+      return {
+        x: centerX + side * pxPerMeter * depthScale,
+        y: centerY - forward * pxPerMeter * verticalScale,
+        visible: forward > -zoom * 0.52 && forward < zoom * 1.55 && Math.abs(side) < zoom * 1.15
+      };
+    }
+
+    function roadPath(width, color) {
+      ctx.beginPath();
+      for (let i = 0; i < edges.length; i++) {
+        const a = nodes.get(edges[i][0]);
+        const b = nodes.get(edges[i][1]);
+        if (!a || !b) continue;
+        const p1 = project(a.x, a.y);
+        const p2 = project(b.x, b.y);
+        if (!p1.visible && !p2.visible) continue;
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+      }
+      ctx.lineWidth = width;
+      ctx.strokeStyle = color;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+    }
+
+    function drawBackground() {
+      const theme = mapThemeName();
+      const accent = normalizeHexColor(settings.themeColor, theme === 'apple' ? '#0a84ff' : '#00d7c0');
+      const g = ctx.createLinearGradient(0, 0, 0, H);
+
+      if (theme === 'apple') {
+        // Apple Maps-inspired light navigation surface: warm neutral land with
+        // very subtle cool shading toward the horizon.
+        g.addColorStop(0, '#e4e6e5');
+        g.addColorStop(0.48, '#ecebe7');
+        g.addColorStop(1, '#d9ddd9');
+      } else {
+        g.addColorStop(0, '#07100f');
+        g.addColorStop(0.48, rgba(accent, 0.12));
+        g.addColorStop(1, rgba(accent, 0.26));
+      }
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+
+      const h = ctx.createRadialGradient(W / 2, H * 0.72, 30, W / 2, H * 0.72, 330);
+      if (theme === 'apple') {
+        h.addColorStop(0, rgba(accent, 0.06));
+        h.addColorStop(1, 'rgba(255,255,255,0)');
+      } else {
+        h.addColorStop(0, rgba(accent, 0.13));
+        h.addColorStop(1, 'rgba(0,0,0,0)');
+      }
+      ctx.fillStyle = h;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    function drawGrid() {
+      const theme = mapThemeName();
+      const accent = normalizeHexColor(settings.themeColor, theme === 'apple' ? '#0a84ff' : '#00d7c0');
+      ctx.save();
+      ctx.strokeStyle = theme === 'apple' ? 'rgba(116, 122, 121, 0.07)' : rgba(accent, 0.065);
+      ctx.lineWidth = 1;
+      const zoom = Math.max(55, Math.min(520, Number(vehicle.zoom) || 78));
+      const step = 50;
+      for (let x = -Math.ceil(zoom / step) * step; x <= zoom; x += step) {
+        const p1 = project(vehicle.x + x, vehicle.y - zoom * 0.35);
+        const p2 = project(vehicle.x + x, vehicle.y + zoom * 1.1);
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function drawVehicle() {
+      const x = W / 2;
+      const y = H * 0.77 + (Number(settings.y) || 0);
+      const theme = mapThemeName();
+      const accent = normalizeHexColor(settings.themeColor, theme === 'apple' ? '#0a84ff' : '#00d7c0');
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.shadowColor = rgba(accent, theme === 'apple' ? 0.42 : 0.58);
+      ctx.shadowBlur = theme === 'apple' ? 10 : 14;
+      ctx.beginPath();
+      ctx.moveTo(0, -19);
+      ctx.lineTo(14, 13);
+      ctx.lineTo(0, 7);
+      ctx.lineTo(-14, 13);
+      ctx.closePath();
+      ctx.fillStyle = accent;
+      ctx.fill();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = theme === 'apple' ? '#ffffff' : '#f2fbff';
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawVignette() {
+      const v = ctx.createRadialGradient(W / 2, H / 2, 180, W / 2, H / 2, 390);
+      v.addColorStop(0, 'rgba(0,0,0,0)');
+      v.addColorStop(1, mapThemeName() === 'apple' ? 'rgba(90,94,92,0.13)' : 'rgba(0,0,0,0.36)');
+      ctx.fillStyle = v;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+      drawBackground();
+      drawGrid();
+
+      if (edges.length) {
+        const theme = mapThemeName();
+        const accent = normalizeHexColor(settings.themeColor, theme === 'apple' ? '#0a84ff' : '#00d7c0');
+        if (theme === 'apple') {
+          // Apple Maps-inspired road hierarchy: soft gray casing, bright white
+          // carriageway, and a faint accent center highlight.
+          roadPath(15, 'rgba(151, 154, 151, 0.42)');
+          roadPath(11, 'rgba(255, 255, 255, 0.98)');
+          roadPath(2, rgba(accent, 0.16));
+        } else {
+          roadPath(13, 'rgba(2, 14, 15, 0.78)');
+          roadPath(8, 'rgba(143, 166, 165, 0.92)');
+          roadPath(3, rgba(accent, 0.72));
+        }
+      }
+
+      drawVehicle();
+      drawVignette();
+    }
+
+    function setup(data) {
+      data = data || {};
+      if (data.mapPitch !== undefined) settings.pitch = Number(data.mapPitch);
+      if (data.mapScale !== undefined) settings.scale = Number(data.mapScale);
+      if (data.mapYOffset !== undefined) settings.y = Number(data.mapYOffset);
+      if (data.mapPerspective !== undefined) settings.perspective = Number(data.mapPerspective);
+      if (data.mapTheme !== undefined) settings.mapTheme = String(data.mapTheme || 'dark').toLowerCase();
+      if (data.themeColor !== undefined) settings.themeColor = normalizeHexColor(data.themeColor, settings.mapTheme === 'apple' ? '#0a84ff' : '#00d7c0');
+      if (data.mapZoom !== undefined && finite(data.mapZoom) !== null) vehicle.zoom = Number(data.mapZoom);
+      render();
+    }
+    window.setup = setup;
+
+    // BeamNG uiNavi executes literal map.setData(...) / map.updateData(...) in
+    // this page, so keep an actual global var in addition to window.map.
+    function applyVehicleData(data) {
+      data = data || {};
+      if (finite(data.x) !== null) vehicle.x = Number(data.x);
+      if (finite(data.y) !== null) vehicle.y = Number(data.y);
+      if (finite(data.rotation) !== null) vehicle.rotation = Number(data.rotation);
+      if (finite(data.zoom) !== null) vehicle.zoom = Number(data.zoom);
+      if (finite(data.speed) !== null) vehicle.speed = Number(data.speed);
+      if (finite(data.ignitionLevel) !== null) vehicle.ignitionLevel = Number(data.ignitionLevel);
+      render();
+    }
+
+    var map = {
+      setData: function (data) {
+        data = data || {};
+        const candidateNodes = normalizeNodes(data);
+        const candidateEdges = buildEdges(candidateNodes);
+
+        // uiNavi can briefly send nodes:{} while a level/navigation graph is still
+        // initializing.  Never let an empty refresh erase a road graph that already
+        // loaded successfully.
+        if (candidateNodes.size > 0 && candidateEdges.length > 0) {
+          rawMapData = data;
+          nodes = candidateNodes;
+          edges = candidateEdges;
+        }
+        render();
+      },
+      updateData: function (data) {
+        lastNativeUpdateMs = (window.performance && performance.now) ? performance.now() : Date.now();
+        applyVehicleData(data);
+      },
+      reset: function () {
+        rawMapData = {};
+        nodes = new Map();
+        edges = [];
+        lastNativeUpdateMs = -Infinity;
+        render();
+      }
+    };
+    window.map = map;
+
+    // Vehicle-Lua fallback. If BeamNG's native map.updateData stream is alive, prefer
+    // it; otherwise use the direct vehicle position so the map still moves.
+    window.updateVehicle = function (data) {
+      const now = (window.performance && performance.now) ? performance.now() : Date.now();
+      if (now - lastNativeUpdateMs > 350) applyVehicleData(data || {});
+    };
+
+    render();
+  })();
+  </script>
+</body>
+</html>
