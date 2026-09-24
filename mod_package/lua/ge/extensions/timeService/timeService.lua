@@ -8,7 +8,7 @@ end
 
 local function onUpdate(dt, dtSim)
     local tod = core_environment.getTimeOfDay()
-    local sbn = core_environment.getSkyBrightness()
+    -- local sbn = core_environment.getSkyBrightness()
 
     be:sendToMailbox("timeService", tod.time)
 end
